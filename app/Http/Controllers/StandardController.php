@@ -8,8 +8,13 @@ use Illuminate\Http\Request;
 class StandardController extends Controller
 {
 
-    public function getAll(){
-        return Standard::all();
+    public function getAll(Request $request){
+        if($request->get('parent')) {
+            return Standard::where('standard_id', $request->get('parent'))->get();
+        } else {
+            return Standard::where('standard_id', null)->get();
+        }
+
     }
 
     public function get($id){
