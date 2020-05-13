@@ -19,3 +19,6 @@
  */
 
 Encore\Admin\Form::forget(['map', 'editor']);
+
+// Override views Laravel-admin
+app('view')->prependNamespace('admin', resource_path('views/admin'));
