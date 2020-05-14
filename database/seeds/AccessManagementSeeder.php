@@ -15,7 +15,7 @@ class AccessManagementSeeder extends Seeder
         // Users
 
         DB::table('admin_users')->insert([/* id => 1 */'name' => 'Administrator', 'username' => 'admin', 'password' => bcrypt('admin')]);
-        DB::table('admin_users')->insert([/* id => 2 */'name' => 'Gestor', 'username' => 'manager', 'password' => bcrypt('manager')]);
+        DB::table('admin_users')->insert([/* id => 2 */'name' => 'Manager', 'username' => 'manager', 'password' => bcrypt('manager')]);
 
 
         // Roles
@@ -34,9 +34,11 @@ class AccessManagementSeeder extends Seeder
         DB::table('admin_permissions')->insert([/* id => 3 */'name' => 'Login', 'slug' => 'auth.login', 'http_method' => '', 'http_path' => '/auth/login' . "\n" . '/auth/logout']);
         DB::table('admin_permissions')->insert([/* id => 4 */'name' => 'Editar perfil', 'slug' => 'auth.setting', 'http_method' => 'GET,PUT', 'http_path' => '/auth/setting']);
         DB::table('admin_permissions')->insert([/* id => 5 */'name' => 'Administrar accesos', 'slug' => 'auth.management', 'http_method' => '', 'http_path' => '/auth/roles' . "\n" . '/auth/permissions' . "\n" . '/auth/menu' . "\n" . '/auth/logs']);
-        DB::table('admin_permissions')->insert([/* id => 6 */'name' => 'Gestionar información', 'slug' => 'info.management', 'http_method' => '', 'http_path' => '/projects' . "\n" . '/standards']);
+        DB::table('admin_permissions')->insert([/* id => 6 */'name' => 'Gestionar información', 'slug' => 'info.management', 'http_method' => '', 'http_path' => '/projects*' . "\n" . '/standards*']);
 
         DB::table('admin_role_permissions')->insert(['role_id' => 1, 'permission_id' => 1]);
+        DB::table('admin_role_permissions')->insert(['role_id' => 2, 'permission_id' => 2]);
+        DB::table('admin_role_permissions')->insert(['role_id' => 2, 'permission_id' => 4]);
         DB::table('admin_role_permissions')->insert(['role_id' => 2, 'permission_id' => 6]);
 
 

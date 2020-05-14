@@ -16,7 +16,7 @@ class StandardController extends AdminController
      *
      * @var string
      */
-    protected $title = 'App\Standard';
+    protected $title = 'Normas';
 
     /**
      * Make a grid builder.

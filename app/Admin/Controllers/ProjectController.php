@@ -16,7 +16,7 @@ class ProjectController extends AdminController
      *
      * @var string
      */
-    protected $title = 'App\Project';
+    protected $title = 'Proyectos';
 
     /**
      * Make a grid builder.
