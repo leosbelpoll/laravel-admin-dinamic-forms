@@ -40,4 +40,5 @@ Route::middleware('auth:api')->group(function ($router) {
     Route::get('/bombas-abastecimiento', 'BombaAbastecimientoController@getAll')->name('getAllBombasAbastecimiento');
     Route::get('/sistemas-amortiguacion', 'SistemaAmortiguacionController@getAll')->name('getAllSistemasAmortiguacion');
     Route::get('/estados-medicion', 'EstadoMedicionController@getAll')->name('getAllEstadoMedicion');
+    Route::get('/generadores-gasolina', 'GeneradorGasolinaController@getAll')->name('getAllGeneradorGasolina');
 });

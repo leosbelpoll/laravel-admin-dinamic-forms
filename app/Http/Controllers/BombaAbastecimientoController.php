@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\BombaAbastecimiento;
-use Illuminate\Http\Request;
 
 class BombaAbastecimientoController extends Controller
 {

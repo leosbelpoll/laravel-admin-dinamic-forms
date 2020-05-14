@@ -65,5 +65,11 @@ class InitialDataSeeder extends Seeder
         DB::table('estados_medicion')->insert([/* id => 1 */'name' => 'Estado medición 1']);
         DB::table('estados_medicion')->insert([/* id => 2 */'name' => 'Estado medición 2']);
         DB::table('estados_medicion')->insert([/* id => 3 */'name' => 'Estado medición 3']);
+
+        // Generadores de gasolina
+
+        DB::table('generadores_gasolina')->insert([/* id => 1 */'name' => 'Generador gasolina 1']);
+        DB::table('generadores_gasolina')->insert([/* id => 2 */'name' => 'Generador gasolina 2']);
+        DB::table('generadores_gasolina')->insert([/* id => 3 */'name' => 'Generador gasolina 3']);
     }
 }
