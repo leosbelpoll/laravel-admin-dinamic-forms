@@ -35,10 +35,21 @@ Route::middleware('auth:api')->group(function ($router) {
     Route::get('/forms', 'FormController@getAll')->name('getAllForms');
     Route::get('/forms/{id}', 'FormController@get')->name('getForm');
 
-    // Vehicles routes
+
+    // Nomencladores
+
     Route::get('/no-placas', 'NoPlacaController@getAll')->name('getAllNoPlacas');
+    Route::get('/no-placas/{id}', 'NoPlacaController@getAll')->name('getNoPlacas');
+
     Route::get('/bombas-abastecimiento', 'BombaAbastecimientoController@getAll')->name('getAllBombasAbastecimiento');
+    Route::get('/bombas-abastecimiento/{id}', 'BombaAbastecimientoController@getAll')->name('getBombasAbastecimiento');
+
     Route::get('/sistemas-amortiguacion', 'SistemaAmortiguacionController@getAll')->name('getAllSistemasAmortiguacion');
-    Route::get('/estados-medicion', 'EstadoMedicionController@getAll')->name('getAllEstadoMedicion');
-    Route::get('/generadores-gasolina', 'GeneradorGasolinaController@getAll')->name('getAllGeneradorGasolina');
+    Route::get('/sistemas-amortiguacion/{id}', 'SistemaAmortiguacionController@getAll')->name('getSistemasAmortiguacion');
+
+    Route::get('/estados-medicion', 'EstadoMedicionController@getAll')->name('getAllEstadosMedicion');
+    Route::get('/estados-medicion/{id}', 'EstadoMedicionController@getAll')->name('getEstadosMedicion');
+
+    Route::get('/generadores-gasolina', 'GeneradorGasolinaController@getAll')->name('getAllGeneradoresGasolina');
+    Route::get('/generadores-gasolina/{id}', 'GeneradorGasolinaController@getAll')->name('getGeneradoresGasolina');
 });
