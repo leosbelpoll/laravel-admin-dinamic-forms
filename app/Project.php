@@ -11,4 +11,9 @@ class Project extends Model
     protected $fillable = [
         'name', 'description',
     ];
+
+    public function standards()
+    {
+        return $this->belongsToMany(Standard::class);
+    }
 }

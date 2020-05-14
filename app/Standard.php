@@ -21,4 +21,9 @@ class Standard extends Model
     {
         return $this->belongsTo(Standard::class);
     }
+
+    public function projects()
+    {
+        return $this->belongsToMany(Project::class);
+    }
 }

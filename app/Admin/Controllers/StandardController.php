@@ -2,6 +2,7 @@
 
 namespace App\Admin\Controllers;
 
+use App\Project;
 use App\Standard;
 use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Form;
@@ -26,21 +27,19 @@ class StandardController extends AdminController
     {
         $grid = new Grid(new Standard());
 
-        $grid->column('id', __('Id'));
-        $grid->column('name', __('Name'));
-        $grid->column('description', __('Description'));
-        $grid->standard('Super Standard')->display(function ($standard) {
+        $grid->column('name', __('Título'))->sortable();
+        $grid->column('description', __('Descripción'));
+
+        $grid->standard('Norma superior')->display(function ($standard) {
             if ($standard) {
                 return "<span>{$standard['name']}</span>";
             }
         });
-        $grid->standards('Count Sub Standard')->display(function ($standards) {
-            $count = count($standards);
-            return "<span>{$count}</span>";
 
-        });
         $grid->column('created_at', __('Created at'));
         $grid->column('updated_at', __('Updated at'));
+
+        $grid->model()->orderBy('id', 'asc');
 
         return $grid;
     }
@@ -74,12 +73,14 @@ class StandardController extends AdminController
     {
         $form = new Form(new Standard());
 
-        $form->text('name', 'Name');
-        $form->textarea('description', 'Description');
-        $standards = Standard::where('id', '!=', -1)->pluck('name', 'id')->toArray();
-        $form->select('standard')->options($standards);
-        // $form->text('standard.id');
-        // $form->number('standard_id', __('Standard id'));
+        $form->text('name', 'Título');
+        $form->textarea('description', 'Descripción');
+
+        $standards = Standard::all()->pluck('name', 'id')->toArray();
+        $form->select('standard_id', 'Norma superior')->options($standards);
+
+        $projects = Project::all()->pluck('name', 'id')->toArray();
+        $form->multipleSelect('projects', 'Proyectos')->options($projects);
 
         return $form;
     }
