@@ -66,7 +66,10 @@ class BombaAbastecimientoController extends AdminController
     {
         $form = new Form(new BombaAbastecimiento());
 
-        $form->text('name', 'Título')->required()->rules('unique:bombas_abastecimiento,name');
+        $form->text('name', 'Título')
+            ->required()
+            ->creationRules(['required', "unique:bombas_abastecimiento"])
+            ->updateRules(['required', "unique:bombas_abastecimiento,name,{{id}}"]);
 
         $form->textarea('description', 'Descripción');
 

@@ -66,7 +66,10 @@ class SistemaAmortiguacionController extends AdminController
     {
         $form = new Form(new SistemaAmortiguacion());
 
-        $form->text('name', 'Título')->required()->rules('unique:sistemas_amortiguacion,name');
+        $form->text('name')
+            ->required()
+            ->creationRules(['required', "unique:sistemas_amortiguacion"])
+            ->updateRules(['required', "unique:sistemas_amortiguacion,name,{{id}}"]);
 
         $form->textarea('description', 'Descripción');
 

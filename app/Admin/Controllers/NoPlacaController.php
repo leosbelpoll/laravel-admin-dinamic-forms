@@ -66,7 +66,10 @@ class NoPlacaController extends AdminController
     {
         $form = new Form(new NoPlaca());
 
-        $form->text('name', 'Título')->required()->rules('unique:no_placas,name');
+        $form->text('name', 'Título')
+            ->required()
+            ->creationRules(['required', "unique:no_placas"])
+            ->updateRules(['required', "unique:no_placas,name,{{id}}"]);
 
         $form->textarea('description', 'Descripción');
 
