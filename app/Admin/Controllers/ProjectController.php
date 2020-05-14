@@ -66,7 +66,7 @@ class ProjectController extends AdminController
 
         $form->text('name', 'Titulo');
         $form->textarea('description', 'Descripción');
-        $standards = Standard::all()->pluck('name', 'id')->toArray();
+        $standards = Standard::where('standard_id', null)->pluck('name', 'id')->toArray();
         $form->multipleSelect('standards', 'Normas')->options($standards);
 
 
