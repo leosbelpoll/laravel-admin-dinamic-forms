@@ -10,9 +10,9 @@ Route::group([
     'middleware'    => config('admin.route.middleware'),
 ], function (Router $router) {
     $router->get('/', 'HomeController@index')->name('admin.home');
-    $router->resource('projects', ProjectController::class);
-    $router->resource('standards', StandardController::class);
-    $router->resource('no-placas', NoPlacaController::class);
-    $router->resource('bombas-abastecimiento', BombaAbastecimientoController::class);
-    $router->resource('sistemas-amortiguacion', SistemaAmortiguacionController::class);
+    $router->resource('api/projects', ProjectController::class);
+    $router->resource('api/standards', StandardController::class);
+    $router->resource('api/no-placas', NoPlacaController::class);
+    $router->resource('api/bombas-abastecimiento', BombaAbastecimientoController::class);
+    $router->resource('api/sistemas-amortiguacion', SistemaAmortiguacionController::class);
 });
