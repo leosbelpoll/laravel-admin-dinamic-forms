@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\BombaAbastecimiento;
+use App\NoPlaca;
 
 class NoPlacaController extends Controller
 {
     public function getAll(){
-        return BombaAbastecimiento::all();
+        return NoPlaca::all();
     }
 }
