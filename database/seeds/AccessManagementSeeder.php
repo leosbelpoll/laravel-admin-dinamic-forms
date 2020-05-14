@@ -34,7 +34,7 @@ class AccessManagementSeeder extends Seeder
         DB::table('admin_permissions')->insert([/* id => 3 */'name' => 'Login', 'slug' => 'auth.login', 'http_method' => '', 'http_path' => '/auth/login' . "\n" . '/auth/logout']);
         DB::table('admin_permissions')->insert([/* id => 4 */'name' => 'Editar perfil', 'slug' => 'auth.setting', 'http_method' => 'GET,PUT', 'http_path' => '/auth/setting']);
         DB::table('admin_permissions')->insert([/* id => 5 */'name' => 'Administrar accesos', 'slug' => 'auth.management', 'http_method' => '', 'http_path' => '/auth/roles' . "\n" . '/auth/permissions' . "\n" . '/auth/menu' . "\n" . '/auth/logs']);
-        DB::table('admin_permissions')->insert([/* id => 6 */'name' => 'Gestionar información', 'slug' => 'info.management', 'http_method' => '', 'http_path' => '/projects*' . "\n" . '/standards*' . "\n" . '/no-placas*' . "\n" . '/bombas-abastecimiento*']);
+        DB::table('admin_permissions')->insert([/* id => 6 */'name' => 'Gestionar información', 'slug' => 'info.management', 'http_method' => '', 'http_path' => '/projects*' . "\n" . '/standards*' . "\n" . '/no-placas*' . "\n" . '/bombas-abastecimiento*' . "\n" . '/sistemas-amortiguacion*']);
 
         DB::table('admin_role_permissions')->insert(['role_id' => 1, 'permission_id' => 1]);
         DB::table('admin_role_permissions')->insert(['role_id' => 2, 'permission_id' => 2]);
@@ -56,6 +56,7 @@ class AccessManagementSeeder extends Seeder
         DB::table('admin_menu')->insert([/* id => 10 */'parent_id' => 0, 'order' => 10, 'title' => 'Vehículos', 'icon' => 'fa-car', 'uri' => '']);
         DB::table('admin_menu')->insert([/* id => 11 */'parent_id' => 10, 'order' => 11, 'title' => 'Números de Placas', 'icon' => 'fa-list', 'uri' => 'no-placas']);
         DB::table('admin_menu')->insert([/* id => 12 */'parent_id' => 10, 'order' => 12, 'title' => 'Bombas de Abastecimiento', 'icon' => 'fa-list', 'uri' => 'bombas-abastecimiento']);
+        DB::table('admin_menu')->insert([/* id => 13 */'parent_id' => 10, 'order' => 13, 'title' => 'Sistemas de Amortiguación', 'icon' => 'fa-list', 'uri' => 'sistemas-amortiguacion']);
 
         DB::table('admin_role_menu')->insert(['role_id' => 1, 'menu_id' => 2]);
         DB::table('admin_role_menu')->insert(['role_id' => 2, 'menu_id' => 8]);

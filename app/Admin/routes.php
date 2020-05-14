@@ -14,4 +14,5 @@ Route::group([
     $router->resource('standards', StandardController::class);
     $router->resource('no-placas', NoPlacaController::class);
     $router->resource('bombas-abastecimiento', BombaAbastecimientoController::class);
+    $router->resource('sistemas-amortiguacion', SistemaAmortiguacionController::class);
 });
