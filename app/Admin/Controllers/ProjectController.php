@@ -67,12 +67,7 @@ class ProjectController extends AdminController
     {
         $form = new Form(new Project());
 
-        $form->text('name', 'Título')->required()->rules(function ($form) {
-            if (!$id = $form->model()->id) {
-                return 'unique:projects,name';
-            }
-
-        });
+        $form->text('name', 'Título')->required()->rules('unique:projects,name');
 
         $form->textarea('description', 'Descripción');
         $standards = Standard::where('standard_id', null)->pluck('name', 'id')->toArray();

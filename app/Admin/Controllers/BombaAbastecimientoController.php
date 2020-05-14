@@ -2,20 +2,20 @@
 
 namespace App\Admin\Controllers;
 
-use App\NoPlaca;
+use App\BombaAbastecimiento;
 use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
 use Encore\Admin\Show;
 
-class NoPlacaController extends AdminController
+class BombaAbastecimientoController extends AdminController
 {
     /**
      * Title for current resource.
      *
      * @var string
      */
-    protected $title = 'Números de Placas';
+    protected $title = 'Bombas de Abastecimiento';
 
     /**
      * Make a grid builder.
@@ -24,7 +24,7 @@ class NoPlacaController extends AdminController
      */
     protected function grid()
     {
-        $grid = new Grid(new NoPlaca());
+        $grid = new Grid(new BombaAbastecimiento());
 
         $grid->column('name')->sortable();
         $grid->column('description');
@@ -47,7 +47,7 @@ class NoPlacaController extends AdminController
      */
     protected function detail($id)
     {
-        $show = new Show(NoPlaca::findOrFail($id));
+        $show = new Show(BombaAbastecimiento::findOrFail($id));
 
         $show->field('name', __('Título'));
         $show->field('description', __('Descripción'));
@@ -64,9 +64,9 @@ class NoPlacaController extends AdminController
      */
     protected function form()
     {
-        $form = new Form(new NoPlaca());
+        $form = new Form(new BombaAbastecimiento());
 
-        $form->text('name', 'Título')->required()->rules('unique:no_placas,name');
+        $form->text('name', 'Título')->required()->rules('unique:bombas_abastecimiento,name');
 
         $form->textarea('description', 'Descripción');
 

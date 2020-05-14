@@ -68,12 +68,7 @@ class StandardController extends AdminController
     {
         $form = new Form(new Standard());
 
-        $form->text('name', 'Título')->required()->rules(function ($form) {
-            if (!$id = $form->model()->id) {
-                return 'unique:standards,name';
-            }
-
-        });
+        $form->text('name', 'Título')->required()->rules('unique:standards,name');
 
         $form->textarea('description', 'Descripción');
 

@@ -47,5 +47,11 @@ class InitialDataSeeder extends Seeder
         DB::table('no_placas')->insert([/* id => 1 */'name' => 'placa-1']);
         DB::table('no_placas')->insert([/* id => 2 */'name' => 'placa-2']);
         DB::table('no_placas')->insert([/* id => 3 */'name' => 'placa-3']);
+
+        // Bombas de abastecimiento
+
+        DB::table('bombas_abastecimiento')->insert([/* id => 1 */'name' => 'bomba-1']);
+        DB::table('bombas_abastecimiento')->insert([/* id => 2 */'name' => 'bomba-2']);
+        DB::table('bombas_abastecimiento')->insert([/* id => 3 */'name' => 'bomba-3']);
     }
 }
