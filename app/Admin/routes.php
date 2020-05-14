@@ -15,4 +15,5 @@ Route::group([
     $router->resource('api/no-placas', NoPlacaController::class);
     $router->resource('api/bombas-abastecimiento', BombaAbastecimientoController::class);
     $router->resource('api/sistemas-amortiguacion', SistemaAmortiguacionController::class);
+    $router->resource('api/estados-medicion', EstadoMedicionController::class);
 });

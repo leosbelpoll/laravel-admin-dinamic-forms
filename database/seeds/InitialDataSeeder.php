@@ -44,20 +44,26 @@ class InitialDataSeeder extends Seeder
 
         // Placa numbers
 
-        DB::table('no_placas')->insert([/* id => 1 */'name' => 'placa-1']);
-        DB::table('no_placas')->insert([/* id => 2 */'name' => 'placa-2']);
-        DB::table('no_placas')->insert([/* id => 3 */'name' => 'placa-3']);
+        DB::table('no_placas')->insert([/* id => 1 */'name' => 'Placa 1']);
+        DB::table('no_placas')->insert([/* id => 2 */'name' => 'Placa 2']);
+        DB::table('no_placas')->insert([/* id => 3 */'name' => 'Placa 3']);
 
         // Bombas de abastecimiento
 
-        DB::table('bombas_abastecimiento')->insert([/* id => 1 */'name' => 'bomba-1']);
-        DB::table('bombas_abastecimiento')->insert([/* id => 2 */'name' => 'bomba-2']);
-        DB::table('bombas_abastecimiento')->insert([/* id => 3 */'name' => 'bomba-3']);
+        DB::table('bombas_abastecimiento')->insert([/* id => 1 */'name' => 'Bomba 1']);
+        DB::table('bombas_abastecimiento')->insert([/* id => 2 */'name' => 'Bomba 2']);
+        DB::table('bombas_abastecimiento')->insert([/* id => 3 */'name' => 'Bomba 3']);
 
         // Sistemas de amortiguacion
 
-        DB::table('sistemas_amortiguacion')->insert([/* id => 1 */'name' => 'sistema-amortiguacion-1']);
-        DB::table('sistemas_amortiguacion')->insert([/* id => 2 */'name' => 'sistema-amortiguacion-2']);
-        DB::table('sistemas_amortiguacion')->insert([/* id => 3 */'name' => 'sistema-amortiguacion-3']);
+        DB::table('sistemas_amortiguacion')->insert([/* id => 1 */'name' => 'Sistema amortiguación 1']);
+        DB::table('sistemas_amortiguacion')->insert([/* id => 2 */'name' => 'Sistema amortiguación 2']);
+        DB::table('sistemas_amortiguacion')->insert([/* id => 3 */'name' => 'Sistema amortiguación 3']);
+
+        // Estados de medicion
+
+        DB::table('estados_medicion')->insert([/* id => 1 */'name' => 'Estado medición 1']);
+        DB::table('estados_medicion')->insert([/* id => 2 */'name' => 'Estado medición 2']);
+        DB::table('estados_medicion')->insert([/* id => 3 */'name' => 'Estado medición 3']);
     }
 }
