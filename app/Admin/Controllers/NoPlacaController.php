@@ -2,21 +2,20 @@
 
 namespace App\Admin\Controllers;
 
-use App\Project;
-use App\Standard;
+use App\NoPlaca;
 use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
 use Encore\Admin\Show;
 
-class StandardController extends AdminController
+class NoPlacaController extends AdminController
 {
     /**
      * Title for current resource.
      *
      * @var string
      */
-    protected $title = 'Normas';
+    protected $title = 'Números de Placas';
 
     /**
      * Make a grid builder.
@@ -25,15 +24,14 @@ class StandardController extends AdminController
      */
     protected function grid()
     {
-        $grid = new Grid(new Standard());
+        $grid = new Grid(new NoPlaca());
 
-        $grid->column('name', __('Título'))->sortable();
-        $grid->column('description', __('Descripción'));
+        $grid->column('name')->sortable();
+        $grid->column('description');
 
-        $grid->standard('Norma superior')->display(function ($standard) {
-            if ($standard) {
-                return "<span>{$standard['name']}</span>";
-            }
+        $grid->filter(function ($filter) {
+            $filter->disableIdFilter();
+            $filter->like('name', 'name');
         });
 
         $grid->model()->orderBy('id', 'asc');
@@ -49,7 +47,7 @@ class StandardController extends AdminController
      */
     protected function detail($id)
     {
-        $show = new Show(Standard::findOrFail($id));
+        $show = new Show(NoPlaca::findOrFail($id));
 
         $show->field('name', __('Título'));
         $show->field('description', __('Descripción'));
@@ -66,24 +64,16 @@ class StandardController extends AdminController
      */
     protected function form()
     {
-        $form = new Form(new Standard());
+        $form = new Form(new NoPlaca());
 
         $form->text('name', 'Título')->required()->rules(function ($form) {
             if (!$id = $form->model()->id) {
-                return 'unique:standards,name';
+                return 'unique:no_placas,name';
             }
 
         });
 
         $form->textarea('description', 'Descripción');
-
-        $standards = Standard::all()->pluck('name', 'id')->toArray();
-        $form->select('standard_id', 'Norma superior')->options($standards);
-
-        // $form->multipleSelect('standards', 'Sub normas')->options($standards);
-
-        $projects = Project::all()->pluck('name', 'id')->toArray();
-        $form->multipleSelect('projects', 'Proyectos')->options($projects);
 
         return $form;
     }

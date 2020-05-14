@@ -50,7 +50,10 @@ class ProjectController extends AdminController
     {
         $show = new Show(Project::findOrFail($id));
 
-
+        $show->field('name', __('Título'));
+        $show->field('description', __('Descripción'));
+        $show->field('created_at', __('Creado'));
+        $show->field('updated_at', __('Modificado'));
 
         return $show;
     }
@@ -64,7 +67,13 @@ class ProjectController extends AdminController
     {
         $form = new Form(new Project());
 
-        $form->text('name', 'Titulo');
+        $form->text('name', 'Título')->required()->rules(function ($form) {
+            if (!$id = $form->model()->id) {
+                return 'unique:projects,name';
+            }
+
+        });
+
         $form->textarea('description', 'Descripción');
         $standards = Standard::where('standard_id', null)->pluck('name', 'id')->toArray();
         $form->multipleSelect('standards', 'Normas')->options($standards);
