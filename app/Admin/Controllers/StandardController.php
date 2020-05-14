@@ -36,9 +36,6 @@ class StandardController extends AdminController
             }
         });
 
-        $grid->column('created_at', __('Created at'));
-        $grid->column('updated_at', __('Updated at'));
-
         $grid->model()->orderBy('id', 'asc');
 
         return $grid;
@@ -78,6 +75,8 @@ class StandardController extends AdminController
 
         $standards = Standard::all()->pluck('name', 'id')->toArray();
         $form->select('standard_id', 'Norma superior')->options($standards);
+
+        // $form->multipleSelect('standards', 'Sub normas')->options($standards);
 
         $projects = Project::all()->pluck('name', 'id')->toArray();
         $form->multipleSelect('projects', 'Proyectos')->options($projects);

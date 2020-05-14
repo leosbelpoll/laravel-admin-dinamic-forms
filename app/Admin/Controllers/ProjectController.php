@@ -29,8 +29,6 @@ class ProjectController extends AdminController
 
         $grid->column('name')->sortable();
         $grid->column('description');
-        $grid->created_at("Created");
-        $grid->updated_at("Updated");
 
         $grid->filter(function ($filter) {
             $filter->disableIdFilter();
