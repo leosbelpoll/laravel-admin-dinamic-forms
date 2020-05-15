@@ -10,4 +10,10 @@ use Illuminate\Routing\Controller as BaseController;
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+
+    public function getVersion() {
+     return response()->json([
+            'version' => '1.0'
+        ], 200);
+    }
 }

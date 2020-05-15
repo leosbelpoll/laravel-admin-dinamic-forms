@@ -23,6 +23,8 @@ Route::group(['middleware' => 'api', 'prefix' => 'auth'], function ($router) {
 });
 
 Route::middleware('auth:api')->group(function ($router) {
+    Route::get('/version', 'Controller@getVersion')->name('getVersion');
+
     // Projects routes
     Route::get('/projects', 'ProjectController@getAll')->name('getAllProjects');
     Route::get('/projects/{id}', 'ProjectController@get')->name('getProject');
