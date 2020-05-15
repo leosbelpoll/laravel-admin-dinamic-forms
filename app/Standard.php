@@ -9,7 +9,7 @@ class Standard extends Model
     protected $table = 'standards';
 
     protected $fillable = [
-        'name', 'description', 'standard_id',
+        'name', 'description', 'standard_id', 'type',
     ];
 
     public function standards()

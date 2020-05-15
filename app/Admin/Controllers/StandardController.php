@@ -28,6 +28,7 @@ class StandardController extends AdminController
         $grid = new Grid(new Standard());
 
         $grid->column('name', __('Título'))->sortable();
+        // $grid->column('type', __('Tipo de formulario'))->sortable();
         $grid->column('description', __('Descripción'));
 
         $grid->standard('Norma superior')->display(function ($standard) {
@@ -74,6 +75,8 @@ class StandardController extends AdminController
             ->updateRules(['required', "unique:standards,name,{{id}}"]);
 
         $form->textarea('description', 'Descripción');
+
+        $form->text('type')->value('FORM')->readonly();
 
         $standards = Standard::all()->pluck('name', 'id')->toArray();
         $form->select('standard_id', 'Norma superior')->options($standards);

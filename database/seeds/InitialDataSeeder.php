@@ -22,13 +22,13 @@ class InitialDataSeeder extends Seeder
 
         // Create Standards
 
-        Standard::insert([/* id => 1 */'name' => 'Gestión Ambiental (14001)']);
-        Standard::insert([/* id => 2 */'name' => 'SST (45001)']);
-        Standard::insert([/* id => 3 */'name' => 'Gestión de la Energía (50001)']);
+        Standard::insert([/* id => 1 */'name' => 'Gestión Ambiental (14001)', 'type' => 'FORM']);
+        Standard::insert([/* id => 2 */'name' => 'SST (45001)', 'type' => 'FORM']);
+        Standard::insert([/* id => 3 */'name' => 'Gestión de la Energía (50001)', 'type' => 'FORM']);
 
-        Standard::insert([/* id => 4 */'name' => 'Vehículos', 'standard_id' => 3]);
-        Standard::insert([/* id => 5 */'name' => 'Generadores de gasolina', 'standard_id' => 3]);
-        Standard::insert([/* id => 6 */'name' => 'Plataformas Manlif', 'standard_id' => 3]);
+        Standard::insert([/* id => 4 */'name' => 'Vehículos', 'standard_id' => 3, 'type' => 'VEHICLE']);
+        Standard::insert([/* id => 5 */'name' => 'Generadores de gasolina', 'standard_id' => 3, 'type' => 'FORM']);
+        Standard::insert([/* id => 6 */'name' => 'Plataformas Manlif', 'standard_id' => 3, 'type' => 'FORM']);
 
 
         // Create Relationshipt between Projects and Standards
