@@ -16,15 +16,22 @@ class AccessManagementSeeder extends Seeder
 
         DB::table('admin_users')->insert([/* id => 1 */'name' => 'Administrator', 'username' => 'admin', 'password' => bcrypt('admin')]);
         DB::table('admin_users')->insert([/* id => 2 */'name' => 'Manager', 'username' => 'manager', 'password' => bcrypt('manager')]);
+        DB::table('admin_users')->insert([/* id => 3 */'name' => 'User 1', 'username' => 'user1', 'password' => bcrypt('user1')]);
+        DB::table('admin_users')->insert([/* id => 4 */'name' => 'User 2', 'username' => 'user2', 'password' => bcrypt('user2')]);
+        DB::table('admin_users')->insert([/* id => 5 */'name' => 'User 3', 'username' => 'user3', 'password' => bcrypt('user3')]);
 
 
         // Roles
 
         DB::table('admin_roles')->insert([/* id => 1 */'name' => 'Administrator', 'slug' => 'administrator']);
         DB::table('admin_roles')->insert([/* id => 2 */'name' => 'Gestor de información', 'slug' => 'info_manager']);
+        DB::table('admin_roles')->insert([/* id => 3 */'name' => 'Usuario', 'slug' => 'user']);
 
         DB::table('admin_role_users')->insert(['role_id' => 1, 'user_id' => 1]);
         DB::table('admin_role_users')->insert(['role_id' => 2, 'user_id' => 2]);
+        DB::table('admin_role_users')->insert(['role_id' => 3, 'user_id' => 3]);
+        DB::table('admin_role_users')->insert(['role_id' => 3, 'user_id' => 4]);
+        DB::table('admin_role_users')->insert(['role_id' => 3, 'user_id' => 5]);
 
 
         // Permissions
@@ -59,6 +66,7 @@ class AccessManagementSeeder extends Seeder
         DB::table('admin_menu')->insert([/* id => 13 */'parent_id' => 10, 'order' => 103, 'title' => 'Sistemas de Amortiguación', 'icon' => 'fa-list', 'uri' => 'api/sistemas-amortiguacion']);
         DB::table('admin_menu')->insert([/* id => 14 */'parent_id' => 10, 'order' => 104, 'title' => 'Estados de Medición', 'icon' => 'fa-list', 'uri' => 'api/estados-medicion']);
         DB::table('admin_menu')->insert([/* id => 15 */'parent_id' => 10, 'order' => 105, 'title' => 'Generadores de Gasolina', 'icon' => 'fa-list', 'uri' => 'api/generadores-gasolina']);
+        DB::table('admin_menu')->insert([/* id => 16 */'parent_id' => 0, 'order' => 10, 'title' => 'Vehículos', 'icon' => 'fa-car', 'uri' => 'api/vehicles']);
 
         DB::table('admin_role_menu')->insert(['role_id' => 1, 'menu_id' => 2]);
 

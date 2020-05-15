@@ -1,6 +1,6 @@
 <?php
 
-use Illuminate\Http\Request;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,6 +34,9 @@ Route::middleware('auth:api')->group(function ($router) {
     // Forms routes
     Route::get('/forms', 'FormController@getAll')->name('getAllForms');
     Route::get('/forms/{id}', 'FormController@get')->name('getForm');
+
+    // Vehicles routes
+    Route::post('/vehicles', 'VehicleController@store')->name('createVehicle');
 
 
     // Nomencladores

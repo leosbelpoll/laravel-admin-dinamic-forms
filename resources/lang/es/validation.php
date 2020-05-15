@@ -13,6 +13,7 @@ return [
     |
     */
 
-    'unique' => 'Este :attribute ya ha sido asignado',
-
+    'unique' => 'Este :attribute ya ha sido asignado.',
+    'required' => 'El campo :attribute es requerido.',
+    'numeric' => 'El campo :attribute es numérico.',
 ];
