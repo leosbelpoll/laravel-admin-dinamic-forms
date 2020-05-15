@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use App\Vehicle;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -10,8 +11,16 @@ class VehicleController extends Controller
 {
     public function store(Request $request)
     {
+        $userIdValidation = 'numeric';
+        $user = null;
+        if (!$username = $request->input('username')) {
+            $userIdValidation = 'required|numeric';
+        } else {
+            $user = User::where('username', $username)->first();
+        }
+
         $validator = Validator::make($request->all(), [
-            'user_id' => 'required|numeric',
+            'user_id' => $userIdValidation,
             'project_id' => 'required|numeric',
             'standard_id' => 'required|numeric',
             'no_placa_id' => 'required|numeric',
@@ -34,6 +43,11 @@ class VehicleController extends Controller
             ], 400);
         } else {
             $vehicle = new Vehicle($request->all());
+
+            if ($request->input('username')) {
+                $vehicle->user_id = $user->id;
+            }
+
             if ($recorridoInicialImage = $request->file('recorrido_inicial_image')) {
                 $recorridoInicialImageName = time() . '.' . $recorridoInicialImage->getClientOriginalExtension();
                 $recorridoInicialImage->move('app/public/', $recorridoInicialImageName);
@@ -52,7 +66,9 @@ class VehicleController extends Controller
                 $vehicle->galones_comprados_image = $galonesCompadosImageName;
             }
 
-            return $vehicle->save();
+            $vehicle->save();
+
+            return $vehicle;
         }
     }
 }
