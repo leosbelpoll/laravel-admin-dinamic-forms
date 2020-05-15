@@ -49,19 +49,19 @@ class VehicleController extends Controller
             }
 
             if ($recorridoInicialImage = $request->file('recorrido_inicial_image')) {
-                $recorridoInicialImageName = time() . '.' . $recorridoInicialImage->getClientOriginalExtension();
+                $recorridoInicialImageName = md5(microtime()) . '.' . $recorridoInicialImage->getClientOriginalExtension();
                 $recorridoInicialImage->move('app/public/', $recorridoInicialImageName);
                 $vehicle->recorrido_inicial_image = $recorridoInicialImageName;
             }
 
             if ($recorridoFinalImage = $request->file('recorrido_final_image')) {
-                $recorridoFinalImageName = time() . '.' . $recorridoFinalImage->getClientOriginalExtension();
+                $recorridoFinalImageName = md5(microtime()) . '.' . $recorridoFinalImage->getClientOriginalExtension();
                 $recorridoFinalImage->move('app/public/', $recorridoFinalImageName);
                 $vehicle->recorrido_final_image = $recorridoFinalImageName;
             }
 
             if ($galonesCompadosImage = $request->file('galones_comprados_image')) {
-                $galonesCompadosImageName = time() . '.' . $galonesCompadosImage->getClientOriginalExtension();
+                $galonesCompadosImageName = md5(microtime()) . '.' . $galonesCompadosImage->getClientOriginalExtension();
                 $galonesCompadosImage->move('app/public/', $galonesCompadosImageName);
                 $vehicle->galones_comprados_image = $galonesCompadosImageName;
             }
