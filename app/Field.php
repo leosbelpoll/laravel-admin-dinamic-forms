@@ -4,17 +4,17 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Project extends Model
+class Field extends Model
 {
-    protected $table = 'projects';
+    protected $table = 'fields';
 
     protected $fillable = [
-        'name', 'description',
+        'name', 'description', 'type', 'rules',
     ];
 
-    public function standards()
+    public function forms()
     {
-        return $this->belongsToMany(Standard::class);
+        return $this->belongsToMany(Form::class);
     }
 
     public function values()

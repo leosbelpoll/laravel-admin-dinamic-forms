@@ -35,4 +35,9 @@ class User extends Administrator implements JWTSubject
     {
         return [];
     }
+
+    public function values()
+    {
+        return $this->hasMany(Value::class);
+    }
 }

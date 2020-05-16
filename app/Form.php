@@ -11,4 +11,19 @@ class Form extends Model
     protected $fillable = [
         'name', 'description',
     ];
+
+    public function standards()
+    {
+        return $this->hasMany(Standard::class);
+    }
+
+    public function fields()
+    {
+        return $this->belongsToMany(Field::class);
+    }
+
+    public function values()
+    {
+        return $this->hasMany(Value::class);
+    }
 }
