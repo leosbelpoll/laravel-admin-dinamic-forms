@@ -18,7 +18,7 @@ class Field extends Model
     }
 
     public function setRulesAttribute($rules) {
-        $this->attributes['rules'] = $rules ? implode ("|", $rules) : null;
+        $this->attributes['rules'] = $rules ? implode("|", $rules) : null;
     }
 
     public function getRulesAttribute($rules) {

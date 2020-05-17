@@ -40,7 +40,7 @@ class FieldController extends AdminController
         $grid->column('type', __('Tipo'));
         $grid->column('selector', __('Selector'));
         $grid->column('rules', 'Reglas')->display(function ($rules) {
-            $text = implode('|', $rules);
+            $text = $rules ? implode('|', $rules) : "";
             return "<span>{$text}</span>";
         });
         $grid->column('position', __('Posición'));
