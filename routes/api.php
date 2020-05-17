@@ -57,4 +57,8 @@ Route::middleware('auth:api')->group(function ($router) {
 
     Route::get('/generadores-gasolina', 'GeneradorGasolinaController@getAll')->name('getAllGeneradoresGasolina');
     Route::get('/generadores-gasolina/{id}', 'GeneradorGasolinaController@getAll')->name('getGeneradoresGasolina');
+
+    // Form Data
+
+    Route::post('/save-values', 'ValueController@saveValues')->name('saveValues');
 });
