@@ -72,6 +72,5 @@ class AccessManagementSeeder extends Seeder
         DB::table('admin_menu')->insert([/* id => 19 */'parent_id' => 17, 'order' => 92, 'title' => 'Campos', 'icon' => 'fa-list', 'uri' => 'api/fields']);
 
         DB::table('admin_role_menu')->insert(['role_id' => 1, 'menu_id' => 2]);
-
     }
 }

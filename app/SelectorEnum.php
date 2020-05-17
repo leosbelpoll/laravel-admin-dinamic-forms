@@ -1,0 +1,12 @@
+<?php
+
+namespace App;
+
+abstract class SelectorEnum
+{
+    const NO_PLACA = 'NO_PLACA';
+    const BOMBA_ABASTECIMIENTO = 'BOMBA_ABASTECIMIENTO';
+    const SISTEMA_AMORTIGUACION = 'SISTEMA_AMORTIGUACION';
+    const ESTADO_MEDICION = 'ESTADO_MEDICION';
+    const GENERADOR_GASOLINA = 'GENERADOR_GASOLINA';
+}

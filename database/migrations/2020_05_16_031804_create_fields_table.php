@@ -16,8 +16,11 @@ class CreateFieldsTable extends Migration
         Schema::create('fields', function (Blueprint $table) {
             $table->id();
             $table->string("name");
+            $table->string("label")->nullable();
+            $table->string("placeholder")->nullable();
             $table->text("description")->nullable();
             $table->string("type");
+            $table->string("selector")->nullable();
             $table->string("rules")->nullable();
             $table->integer('position')->nullable();
             $table->timestamps();

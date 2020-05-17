@@ -3,7 +3,9 @@
 namespace App\Admin\Controllers;
 
 use App\Field;
+use App\FieldTypeEnum;
 use App\Formulario;
+use App\SelectorEnum;
 use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
@@ -18,6 +20,10 @@ class FieldController extends AdminController
      */
     protected $title = 'App\Field';
 
+    private $types = [FieldTypeEnum::NUMBER => 'Número', FieldTypeEnum::SHORT_TEXT => 'Texto corto', FieldTypeEnum::LONG_TEXT => 'Texto largo', FieldTypeEnum::SELECTOR => 'Selector', FieldTypeEnum::IMAGE => 'Imágen'];
+
+    private $selectors = [SelectorEnum::NO_PLACA => 'Número de placa', SelectorEnum::BOMBA_ABASTECIMIENTO => 'Bomba de abastecimiento', SelectorEnum::SISTEMA_AMORTIGUACION => 'Sistema de amortiguación', SelectorEnum::ESTADO_MEDICION => 'Estado de medición', SelectorEnum::GENERADOR_GASOLINA => 'Generador de gasolina'];
+
     /**
      * Make a grid builder.
      *
@@ -27,11 +33,17 @@ class FieldController extends AdminController
     {
         $grid = new Grid(new Field());
 
-        $grid->column('name', __('Name'));
-        $grid->column('description', __('Description'));
-        $grid->column('type', __('Type'));
-        $grid->column('rules', __('Rules'));
-        $grid->column('position', __('Position'));
+        $grid->column('name', __('Nombre'));
+        $grid->column('label', __('Label'));
+        $grid->column('placeholder', __('Placeholder'));
+        $grid->column('description', __('Descripción'));
+        $grid->column('type', __('Tipo'));
+        $grid->column('selector', __('Selector'));
+        $grid->column('rules', 'Reglas')->display(function ($rules) {
+            $text = implode('|', $rules);
+            return "<span>{$text}</span>";
+        });
+        $grid->column('position', __('Posición'));
 
         $grid->model()->orderBy('id', 'asc');
 
@@ -74,9 +86,15 @@ class FieldController extends AdminController
             ->creationRules(['required', "unique:fields"])
             ->updateRules(['required', "unique:fields,name,{{id}}"]);
         $form->text('description', __('Descripción'));
+        $form->text('label', __('Label'));
+        $form->text('placeholder', __('Placeholder'));
         $form->select('type', __('Tipo'))
-            ->options(['TEXT' => 'Texto', 'NUMBER' => 'Número', 'IMAGE' => 'Imágen'])
+            ->options($this->types)
             ->required();
+
+        $form->select('selector', __('Selector'))
+            ->options($this->selectors);
+
         $form->multipleSelect('rules', __('Reglas'))
             ->options(['required' => 'Requerido']);
         $form->number('position', __('Posición'));

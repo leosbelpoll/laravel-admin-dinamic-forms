@@ -37,6 +37,12 @@ class StandardController extends AdminController
             }
         });
 
+        $grid->formulario('Formulario')->display(function ($formulario) {
+            if ($formulario) {
+                return "<span>{$formulario['name']}</span>";
+            }
+        });
+
         $grid->model()->orderBy('id', 'asc');
 
         return $grid;
