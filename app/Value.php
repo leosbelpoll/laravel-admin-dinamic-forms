@@ -9,7 +9,7 @@ class Value extends Model
     protected $table = 'values';
 
     protected $fillable = [
-        'user_id', 'project_id', 'standard_id', 'formulario_id', 'field_id', 'value'
+        'user_id', 'project_id', 'standard_id', 'formulario_id', 'field_id', 'value', 'unique_group',
     ];
 
     public function user()
