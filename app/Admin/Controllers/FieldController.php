@@ -18,7 +18,7 @@ class FieldController extends AdminController
      *
      * @var string
      */
-    protected $title = 'App\Field';
+    protected $title = 'Campos';
 
     private $types = [FieldTypeEnum::NUMBER => 'Número', FieldTypeEnum::SHORT_TEXT => 'Texto corto', FieldTypeEnum::LONG_TEXT => 'Texto largo', FieldTypeEnum::SELECTOR => 'Selector', FieldTypeEnum::IMAGE => 'Imágen'];
 

@@ -19,6 +19,13 @@ use Encore\Admin\Show;
 class VehicleController extends AdminController
 {
     /**
+     * Title for current resource.
+     *
+     * @var string
+     */
+    protected $title = 'Vehículos';
+
+    /**
      * Make a grid builder.
      *
      * @return Grid

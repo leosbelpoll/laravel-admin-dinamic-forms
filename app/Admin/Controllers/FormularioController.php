@@ -17,7 +17,7 @@ class FormularioController extends AdminController
      *
      * @var string
      */
-    protected $title = 'App\Formulario';
+    protected $title = 'Formularios';
 
     /**
      * Make a grid builder.

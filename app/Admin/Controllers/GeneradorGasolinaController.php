@@ -11,6 +11,13 @@ use Encore\Admin\Show;
 class GeneradorGasolinaController extends AdminController
 {
     /**
+     * Title for current resource.
+     *
+     * @var string
+     */
+    protected $title = 'Generadores de gasolina';
+
+    /**
      * Make a grid builder.
      *
      * @return Grid

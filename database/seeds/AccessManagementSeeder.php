@@ -59,17 +59,18 @@ class AccessManagementSeeder extends Seeder
         DB::table('admin_menu')->insert([/* id => 6 */'parent_id' => 2, 'order' => 6, 'title' => 'Menú', 'icon' => 'fa-bars', 'uri' => 'auth/menu']);
         DB::table('admin_menu')->insert([/* id => 7 */'parent_id' => 2, 'order' => 7, 'title' => 'Logs de Operaciones', 'icon' => 'fa-history', 'uri' => 'auth/logs']);
         DB::table('admin_menu')->insert([/* id => 8 */'parent_id' => 0, 'order' => 8, 'title' => 'Proyectos', 'icon' => 'fa-folder-open', 'uri' => 'api/projects']);
-        DB::table('admin_menu')->insert([/* id => 9 */'parent_id' => 0, 'order' => 9, 'title' => 'Normas', 'icon' => 'fa-book', 'uri' => 'api/standards']);
-        DB::table('admin_menu')->insert([/* id => 10 */'parent_id' => 0, 'order' => 100, 'title' => 'Nomencladores', 'icon' => 'fa-cog', 'uri' => '']);
-        DB::table('admin_menu')->insert([/* id => 11 */'parent_id' => 10, 'order' => 101, 'title' => 'Números de Placas', 'icon' => 'fa-list', 'uri' => 'api/no-placas']);
-        DB::table('admin_menu')->insert([/* id => 12 */'parent_id' => 10, 'order' => 102, 'title' => 'Bombas de Abastecimiento', 'icon' => 'fa-list', 'uri' => 'api/bombas-abastecimiento']);
-        DB::table('admin_menu')->insert([/* id => 13 */'parent_id' => 10, 'order' => 103, 'title' => 'Sistemas de Amortiguación', 'icon' => 'fa-list', 'uri' => 'api/sistemas-amortiguacion']);
-        DB::table('admin_menu')->insert([/* id => 14 */'parent_id' => 10, 'order' => 104, 'title' => 'Estados de Medición', 'icon' => 'fa-list', 'uri' => 'api/estados-medicion']);
-        DB::table('admin_menu')->insert([/* id => 15 */'parent_id' => 10, 'order' => 105, 'title' => 'Generadores de Gasolina', 'icon' => 'fa-list', 'uri' => 'api/generadores-gasolina']);
-        DB::table('admin_menu')->insert([/* id => 16 */'parent_id' => 0, 'order' => 10, 'title' => 'Vehículos', 'icon' => 'fa-car', 'uri' => 'api/vehicles']);
-        DB::table('admin_menu')->insert([/* id => 17 */'parent_id' => 0, 'order' => 90, 'title' => 'Formularios dinámicos', 'icon' => 'fa-cog', 'uri' => '']);
-        DB::table('admin_menu')->insert([/* id => 18 */'parent_id' => 17, 'order' => 91, 'title' => 'Formularios', 'icon' => 'fa-list', 'uri' => 'api/formularios']);
-        DB::table('admin_menu')->insert([/* id => 19 */'parent_id' => 17, 'order' => 92, 'title' => 'Campos', 'icon' => 'fa-list', 'uri' => 'api/fields']);
+        DB::table('admin_menu')->insert([/* id => 9 */'parent_id' => 0, 'order' => 9, 'title' => 'Valores Formularios', 'icon' => 'fa-wpforms', 'uri' => 'api/values']);
+        DB::table('admin_menu')->insert([/* id => 10 */'parent_id' => 0, 'order' => 10, 'title' => 'Vehículos', 'icon' => 'fa-car', 'uri' => 'api/vehicles']);
+        DB::table('admin_menu')->insert([/* id => 11 */'parent_id' => 0, 'order' => 11, 'title' => 'Normas', 'icon' => 'fa-book', 'uri' => 'api/standards']);
+        DB::table('admin_menu')->insert([/* id => 12 */'parent_id' => 0, 'order' => 100, 'title' => 'Nomencladores', 'icon' => 'fa-cog', 'uri' => '']);
+        DB::table('admin_menu')->insert([/* id => 13 */'parent_id' => 12, 'order' => 101, 'title' => 'Números de Placas', 'icon' => 'fa-list', 'uri' => 'api/no-placas']);
+        DB::table('admin_menu')->insert([/* id => 14 */'parent_id' => 12, 'order' => 102, 'title' => 'Bombas de Abastecimiento', 'icon' => 'fa-list', 'uri' => 'api/bombas-abastecimiento']);
+        DB::table('admin_menu')->insert([/* id => 15 */'parent_id' => 12, 'order' => 103, 'title' => 'Sistemas de Amortiguación', 'icon' => 'fa-list', 'uri' => 'api/sistemas-amortiguacion']);
+        DB::table('admin_menu')->insert([/* id => 16 */'parent_id' => 12, 'order' => 104, 'title' => 'Estados de Medición', 'icon' => 'fa-list', 'uri' => 'api/estados-medicion']);
+        DB::table('admin_menu')->insert([/* id => 17 */'parent_id' => 12, 'order' => 105, 'title' => 'Generadores de Gasolina', 'icon' => 'fa-list', 'uri' => 'api/generadores-gasolina']);
+        DB::table('admin_menu')->insert([/* id => 18 */'parent_id' => 0, 'order' => 90, 'title' => 'Formularios dinámicos', 'icon' => 'fa-cog', 'uri' => '']);
+        DB::table('admin_menu')->insert([/* id => 19 */'parent_id' => 18, 'order' => 91, 'title' => 'Formularios', 'icon' => 'fa-list', 'uri' => 'api/formularios']);
+        DB::table('admin_menu')->insert([/* id => 20 */'parent_id' => 18, 'order' => 92, 'title' => 'Campos', 'icon' => 'fa-list', 'uri' => 'api/fields']);
 
         DB::table('admin_role_menu')->insert(['role_id' => 1, 'menu_id' => 2]);
     }

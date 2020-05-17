@@ -27,4 +27,5 @@ Route::group([
     $router->resource('vehicles', VehicleController::class);
     $router->resource('fields', FieldController::class);
     $router->resource('formularios', FormularioController::class);
+    $router->resource('values', ValueController::class);
 });
