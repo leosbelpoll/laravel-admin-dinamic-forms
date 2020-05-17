@@ -9,7 +9,7 @@ class Value extends Model
     protected $table = 'values';
 
     protected $fillable = [
-        'user_id', 'project_id', 'standard_id', 'form_id', 'field_id', 'value'
+        'user_id', 'project_id', 'standard_id', 'formulario_id', 'field_id', 'value'
     ];
 
     public function user()
@@ -27,7 +27,7 @@ class Value extends Model
         return $this->belongsTo(Standard::class);
     }
 
-    public function form()
+    public function formulario()
     {
         return $this->belongsTo(Formulario::class);
     }

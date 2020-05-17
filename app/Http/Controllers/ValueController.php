@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\User;
 use App\Value;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\MessageBag;
 
@@ -35,17 +36,25 @@ class ValueController extends Controller
                 'errors' => $errors
             ], 400);
         } else {
-            // $user = null;
-            // if (!$username = $request->input('username')) {
-            //     $user = User::where('username', $username)->first();
-            // }
+            $user = null;
 
-            // $fields = json_decode($request->input('fields'));
+            if ($username = $request->input('username')) {
+                $user = User::where('username', $username)->first();
+            }
 
-            // foreach ($fields as $key => $value) {
-            //     var_dump($key);
-            //     var_dump($value);
-            // }
+            $fields = json_decode($request->input('fields'));
+
+            foreach ($fields as $field) {
+                $value = new Value([
+                    'user_id' => $user->id,
+                    'project_id' => $request->input('project_id'),
+                    'standard_id' => $request->input('standard_id'),
+                    'formulario_id' => $request->input('formulario_id'),
+                    'field_id' => $field->id,
+                    'value' => $field->value
+                ]);
+                $value->save();
+            }
 
             return response()->json(200);
         }
