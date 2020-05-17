@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Formulario;
 use App\Standard;
 use Illuminate\Http\Request;
 
@@ -28,6 +29,8 @@ class StandardController extends Controller
                 'error' => 'Not found'
             ], 404);
         }
+
+        $standard->formulario = Formulario::with('fields')->find($standard->formulario_id);
 
         return $standard;
     }
