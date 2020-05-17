@@ -9,16 +9,19 @@ class Field extends Model
     protected $table = 'fields';
 
     protected $fillable = [
-        'name', 'description', 'type', 'rules',
+        'name', 'description', 'type', 'rules', 'position',
     ];
 
-    public function forms()
+    public function formularios()
     {
-        return $this->belongsToMany(Form::class);
+        return $this->belongsToMany(Formulario::class);
     }
 
-    public function values()
-    {
-        return $this->hasMany(Value::class);
+    public function setRulesAttribute($rules) {
+        $this->attributes['rules'] = $rules ? implode ("|", $rules) : null;
+    }
+
+    public function getRulesAttribute($rules) {
+        return $rules ? explode("|", $rules) : null;
     }
 }

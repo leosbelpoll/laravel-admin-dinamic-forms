@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateFormFieldTable extends Migration
+class CreateFormulariosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateFormFieldTable extends Migration
      */
     public function up()
     {
-        Schema::create('form_field', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('form_id')->unsigned();
-            $table->integer('field_id')->unsigned();
+        Schema::create('formularios', function (Blueprint $table) {
+            $table->id();
+            $table->string("name")->unique();
+            $table->text("description")->nullable();
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ class CreateFormFieldTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('form_field');
+        Schema::dropIfExists('formularios');
     }
 }

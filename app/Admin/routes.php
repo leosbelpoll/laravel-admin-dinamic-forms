@@ -25,4 +25,6 @@ Route::group([
     $router->resource('estados-medicion', EstadoMedicionController::class);
     $router->resource('generadores-gasolina', GeneradorGasolinaController::class);
     $router->resource('vehicles', VehicleController::class);
+    $router->resource('fields', FieldController::class);
+    $router->resource('formularios', FormularioController::class);
 });

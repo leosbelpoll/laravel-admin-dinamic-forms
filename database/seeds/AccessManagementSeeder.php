@@ -67,6 +67,9 @@ class AccessManagementSeeder extends Seeder
         DB::table('admin_menu')->insert([/* id => 14 */'parent_id' => 10, 'order' => 104, 'title' => 'Estados de Medición', 'icon' => 'fa-list', 'uri' => 'api/estados-medicion']);
         DB::table('admin_menu')->insert([/* id => 15 */'parent_id' => 10, 'order' => 105, 'title' => 'Generadores de Gasolina', 'icon' => 'fa-list', 'uri' => 'api/generadores-gasolina']);
         DB::table('admin_menu')->insert([/* id => 16 */'parent_id' => 0, 'order' => 10, 'title' => 'Vehículos', 'icon' => 'fa-car', 'uri' => 'api/vehicles']);
+        DB::table('admin_menu')->insert([/* id => 17 */'parent_id' => 0, 'order' => 90, 'title' => 'Formularios dinámicos', 'icon' => 'fa-cog', 'uri' => '']);
+        DB::table('admin_menu')->insert([/* id => 18 */'parent_id' => 17, 'order' => 91, 'title' => 'Formularios', 'icon' => 'fa-list', 'uri' => 'api/formularios']);
+        DB::table('admin_menu')->insert([/* id => 19 */'parent_id' => 17, 'order' => 92, 'title' => 'Campos', 'icon' => 'fa-list', 'uri' => 'api/fields']);
 
         DB::table('admin_role_menu')->insert(['role_id' => 1, 'menu_id' => 2]);
 

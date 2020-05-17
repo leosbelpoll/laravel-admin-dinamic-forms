@@ -33,9 +33,9 @@ Route::middleware('auth:api')->group(function ($router) {
     Route::get('/standards', 'StandardController@getAll')->name('getAllStandards');
     Route::get('/standards/{id}', 'StandardController@get')->name('getStandard');
 
-    // Forms routes
-    Route::get('/forms', 'FormController@getAll')->name('getAllForms');
-    Route::get('/forms/{id}', 'FormController@get')->name('getForm');
+    // Formularios routes
+    Route::get('/formularios', 'FormularioController@getAll')->name('getAllFormularios');
+    Route::get('/formularios/{id}', 'FormularioController@get')->name('getFormulario');
 
     // Vehicles routes
     Route::post('/vehicles', 'VehicleController@store')->name('createVehicle');

@@ -9,7 +9,7 @@ class Standard extends Model
     protected $table = 'standards';
 
     protected $fillable = [
-        'name', 'description', 'standard_id', 'type', 'form_id',
+        'name', 'description', 'standard_id', 'type', 'formulario_id',
     ];
 
     public function standards()
@@ -27,13 +27,8 @@ class Standard extends Model
         return $this->belongsToMany(Project::class);
     }
 
-    public function form()
+    public function formulario()
     {
-        return $this->belongsTo(Form::class);
-    }
-
-    public function values()
-    {
-        return $this->hasMany(Value::class);
+        return $this->belongsTo(Formulario::class);
     }
 }

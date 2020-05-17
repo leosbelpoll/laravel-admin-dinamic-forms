@@ -16,9 +16,4 @@ class Project extends Model
     {
         return $this->belongsToMany(Standard::class);
     }
-
-    public function values()
-    {
-        return $this->hasMany(Value::class);
-    }
 }

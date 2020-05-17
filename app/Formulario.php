@@ -4,9 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Form extends Model
+class Formulario extends Model
 {
-    protected $table = 'forms';
+    protected $table = 'formularios';
 
     protected $fillable = [
         'name', 'description',
@@ -14,16 +14,11 @@ class Form extends Model
 
     public function standards()
     {
-        return $this->hasMany(Standard::class);
+        return $this->belongsTo(Standard::class);
     }
 
     public function fields()
     {
         return $this->belongsToMany(Field::class);
-    }
-
-    public function values()
-    {
-        return $this->hasMany(Value::class);
     }
 }

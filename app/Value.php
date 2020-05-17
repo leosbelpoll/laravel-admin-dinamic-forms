@@ -29,7 +29,7 @@ class Value extends Model
 
     public function form()
     {
-        return $this->belongsTo(Form::class);
+        return $this->belongsTo(Formulario::class);
     }
 
     public function field()

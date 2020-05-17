@@ -23,11 +23,11 @@ class HomeController extends Controller
 
             $projectsWidget = view('dashboard.projects-widget', ['count' => $projectsCounter])->render();
             $standardsWidget = view('dashboard.standards-widget', ['count' => $standardsCounter])->render();
-            $formsWidget = view('dashboard.vehicles-widget', ['count' => $vehiclesCounter])->render();
+            $vehiclesWidget = view('dashboard.vehicles-widget', ['count' => $vehiclesCounter])->render();
 
             $row->column(4, $projectsWidget);
             $row->column(4, $standardsWidget);
-            $row->column(4, $formsWidget);
+            $row->column(4, $vehiclesWidget);
         });
 
         return $content;
