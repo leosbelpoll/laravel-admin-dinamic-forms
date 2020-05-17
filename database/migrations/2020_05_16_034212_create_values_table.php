@@ -15,12 +15,12 @@ class CreateValuesTable extends Migration
     {
         Schema::create('values', function (Blueprint $table) {
             $table->increments('id');
-            // $table->text('value')->nullable();
-            // $table->integer('user_id')->unsigned();
-            // $table->integer('project_id')->unsigned();
-            // $table->integer('standard_id')->unsigned();
-            // $table->integer('form_id')->unsigned();
-            // $table->integer('field_id')->unsigned();
+            $table->text('value')->nullable();
+            $table->integer('user_id')->unsigned();
+            $table->integer('project_id')->unsigned();
+            $table->integer('standard_id')->unsigned();
+            $table->integer('form_id')->unsigned();
+            $table->integer('field_id')->unsigned();
             $table->timestamps();
         });
     }
