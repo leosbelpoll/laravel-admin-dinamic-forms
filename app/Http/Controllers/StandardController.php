@@ -23,7 +23,7 @@ class StandardController extends Controller
     }
 
     public function get($id){
-        $standard =  Standard::find($id);
+        $standard =  Standard::with('standards')->find($id);
         if (!$standard) {
             return response()->json([
                 'error' => 'Not found'
