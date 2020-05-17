@@ -2,7 +2,7 @@
 
 return [
     'online'                => 'en línea',
-    'login'                 => 'Iniciar sesión',
+    'login'                 => 'Login',
     'logout'                => 'Cerrar sesión',
     'setting'               => 'Ajustes',
     'name'                  => 'Nombre',
