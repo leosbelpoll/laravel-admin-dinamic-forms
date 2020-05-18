@@ -2,6 +2,13 @@
 
 namespace App\Admin\Controllers;
 
+use App\BombaAbastecimiento;
+use App\EstadoMedicion;
+use App\FieldTypeEnum;
+use App\GeneradorGasolina;
+use App\NoPlaca;
+use App\SelectorEnum;
+use App\SistemaAmortiguacion;
 use App\Value;
 use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Form;
@@ -15,7 +22,7 @@ class ValueController extends AdminController
      *
      * @var string
      */
-    protected $title = 'Valores';
+    protected $title = 'Valores de formularios';
 
     /**
      * Make a grid builder.
@@ -27,7 +34,7 @@ class ValueController extends AdminController
         $grid = new Grid(new Value());
 
         $grid->disableActions();
-        
+
         $grid->disableCreateButton();
 
         $grid->disableExport();
@@ -62,7 +69,7 @@ class ValueController extends AdminController
             if ($formulario) {
                 return "Detalles";
             }
-        })->link(function($item){
+        })->link(function ($item) {
             return '/admin/api/values/' . $item->unique_group;
         }, null);
 
@@ -105,26 +112,62 @@ class ValueController extends AdminController
      * @param mixed $id
      * @return Show
      */
-    protected function detail($id)
+    protected function detail($unique_group)
     {
-        $show = new Show(Value::findOrFail($id));
+        $show = new Show(Value::where('unique_group', $unique_group)->first());
 
         $show->panel()
             ->tools(function ($tools) {
                 $tools->disableEdit();
                 $tools->disableDelete();
-            });;
+            });
 
-        $show->field('id', __('Id'));
-        $show->field('value', __('Value'));
-        $show->field('unique_group', __('Unique group'));
-        $show->field('user_id', __('User id'));
-        $show->field('project_id', __('Project id'));
-        $show->field('standard_id', __('Standard id'));
-        $show->field('formulario_id', __('Formulario id'));
-        $show->field('field_id', __('Field id'));
-        $show->field('created_at', __('Created at'));
-        $show->field('updated_at', __('Updated at'));
+        $results = Value::where('unique_group', $unique_group)->get();
+        $results->each(function ($value, $index) use ($show) {
+            if ($value->field->type == FieldTypeEnum::IMAGE) {
+                $show->field('field_' . $index, __($value->field->name))->as(function () use ($value) {
+                    return $value->value;
+                })->image();
+            } else if ($value->field->type == FieldTypeEnum::SELECTOR) {
+                $name = null;
+
+                switch ($value->field->selector) {
+                    case SelectorEnum::NO_PLACA:
+                        $name = NoPlaca::find($value->value)->name;
+                        break;
+                    case SelectorEnum::BOMBA_ABASTECIMIENTO:
+                        $name = BombaAbastecimiento::find($value->value)->name;
+                        break;
+                    case SelectorEnum::SISTEMA_AMORTIGUACION:
+                        $name = SistemaAmortiguacion::find($value->value)->name;
+                        break;
+                    case SelectorEnum::ESTADO_MEDICION:
+                        $name = EstadoMedicion::find($value->value)->name;
+                        break;
+                    case SelectorEnum::GENERADOR_GASOLINA:
+                        $name = GeneradorGasolina::find($value->value)->name;
+                        break;
+                    default:
+                        $name = 'Selector no definido';
+                        break;
+                }
+
+                $show->field('field_' . $index, __($value->field->name))->as(function () use ($name) {
+                    return $name;
+                });
+            } else {
+                $show->field('field_' . $index, __($value->field->name))->as(function () use ($value) {
+                    return $value->value;
+                });
+            }
+        });
+
+
+
+
+
+        $show->field('created_at', __('Creado'));
+        $show->field('updated_at', __('Actualizado'));
 
         return $show;
     }
