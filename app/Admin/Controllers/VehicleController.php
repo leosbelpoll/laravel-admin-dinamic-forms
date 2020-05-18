@@ -34,6 +34,10 @@ class VehicleController extends AdminController
     {
         $grid = new Grid(new Vehicle());
 
+        $grid->disableCreateButton();
+
+        $grid->disableExport();
+
         $grid->user('Usuario')->display(function ($user) {
             if ($user) {
                 return "<span>{$user['name']}</span>";
@@ -58,9 +62,9 @@ class VehicleController extends AdminController
             }
         });
 
-        $grid->column('recorrido_inicial', 'Recorrido inicial')->sortable();
-        $grid->column('recorrido_final', 'Recorrido final')->sortable();
-        $grid->column('galones_comprados', 'Galones comprados')->sortable();
+        $grid->column('recorrido_inicial', 'Recorrido inicial');
+        $grid->column('recorrido_final', 'Recorrido final');
+        $grid->column('galones_comprados', 'Galones comprados');
 
         $grid->bombaabastecimiento('Bomba de abastecimiento')->display(function ($bombaAbastecimiento) {
             if ($bombaAbastecimiento) {
@@ -80,7 +84,7 @@ class VehicleController extends AdminController
             }
         });
 
-        $grid->column('presion_neumaticos', 'Presión de neumáticos')->sortable();
+        $grid->column('presion_neumaticos', 'Presión de neumáticos');
 
         $grid->model()->orderBy('id', 'asc');
 

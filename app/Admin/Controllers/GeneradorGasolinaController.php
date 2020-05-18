@@ -26,8 +26,10 @@ class GeneradorGasolinaController extends AdminController
     {
         $grid = new Grid(new GeneradorGasolina());
 
-        $grid->column('name')->sortable();
-        $grid->column('description');
+        $grid->disableExport();
+
+        $grid->column('name', 'Nombre');
+        $grid->column('description', 'Descripción');
 
         $grid->filter(function ($filter) {
             $filter->disableIdFilter();

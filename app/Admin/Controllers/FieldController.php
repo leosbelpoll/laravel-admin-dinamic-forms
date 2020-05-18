@@ -33,6 +33,8 @@ class FieldController extends AdminController
     {
         $grid = new Grid(new Field());
 
+        $grid->disableExport();
+
         $grid->column('name', __('Nombre'));
         $grid->column('label', __('Label'));
         $grid->column('placeholder', __('Placeholder'));

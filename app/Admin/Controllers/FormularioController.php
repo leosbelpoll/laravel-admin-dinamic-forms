@@ -28,8 +28,10 @@ class FormularioController extends AdminController
     {
         $grid = new Grid(new Formulario());
 
-        $grid->column('name', __('Name'));
-        $grid->column('description', __('Description'));
+        $grid->disableExport();
+
+        $grid->column('name', __('Nombre'));
+        $grid->column('description', __('Descripción'));
         
         $grid->model()->orderBy('id', 'asc');
 

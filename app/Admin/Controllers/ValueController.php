@@ -26,6 +26,10 @@ class ValueController extends AdminController
     {
         $grid = new Grid(new Value());
 
+        $grid->disableCreateButton();
+
+        $grid->disableExport();
+
         $grid->user('Usuario')->display(function ($user) {
             if ($user) {
                 return "<span>{$user['name']}</span>";

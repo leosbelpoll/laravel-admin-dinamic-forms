@@ -59,9 +59,9 @@ class AccessManagementSeeder extends Seeder
         DB::table('admin_menu')->insert([/* id => 6 */'parent_id' => 2, 'order' => 6, 'title' => 'Menú', 'icon' => 'fa-bars', 'uri' => 'auth/menu']);
         DB::table('admin_menu')->insert([/* id => 7 */'parent_id' => 2, 'order' => 7, 'title' => 'Logs de Operaciones', 'icon' => 'fa-history', 'uri' => 'auth/logs']);
         DB::table('admin_menu')->insert([/* id => 8 */'parent_id' => 0, 'order' => 8, 'title' => 'Proyectos', 'icon' => 'fa-folder-open', 'uri' => 'api/projects']);
-        DB::table('admin_menu')->insert([/* id => 9 */'parent_id' => 0, 'order' => 9, 'title' => 'Valores Formularios', 'icon' => 'fa-wpforms', 'uri' => 'api/values']);
-        DB::table('admin_menu')->insert([/* id => 10 */'parent_id' => 0, 'order' => 10, 'title' => 'Vehículos', 'icon' => 'fa-car', 'uri' => 'api/vehicles']);
-        DB::table('admin_menu')->insert([/* id => 11 */'parent_id' => 0, 'order' => 11, 'title' => 'Normas', 'icon' => 'fa-book', 'uri' => 'api/standards']);
+        DB::table('admin_menu')->insert([/* id => 9 */'parent_id' => 0, 'order' => 9, 'title' => 'Normas', 'icon' => 'fa-book', 'uri' => 'api/standards']);
+        DB::table('admin_menu')->insert([/* id => 10 */'parent_id' => 0, 'order' => 10, 'title' => 'Valores Formularios', 'icon' => 'fa-wpforms', 'uri' => 'api/values']);
+        DB::table('admin_menu')->insert([/* id => 11 */'parent_id' => 0, 'order' => 11, 'title' => 'Vehículos', 'icon' => 'fa-car', 'uri' => 'api/vehicles']);
         DB::table('admin_menu')->insert([/* id => 12 */'parent_id' => 0, 'order' => 100, 'title' => 'Nomencladores', 'icon' => 'fa-cog', 'uri' => '']);
         DB::table('admin_menu')->insert([/* id => 13 */'parent_id' => 12, 'order' => 101, 'title' => 'Números de Placas', 'icon' => 'fa-list', 'uri' => 'api/no-placas']);
         DB::table('admin_menu')->insert([/* id => 14 */'parent_id' => 12, 'order' => 102, 'title' => 'Bombas de Abastecimiento', 'icon' => 'fa-list', 'uri' => 'api/bombas-abastecimiento']);

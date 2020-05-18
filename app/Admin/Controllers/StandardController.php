@@ -28,7 +28,9 @@ class StandardController extends AdminController
     {
         $grid = new Grid(new Standard());
 
-        $grid->column('name', __('Título'))->sortable();
+        $grid->disableExport();
+
+        $grid->column('name', __('Nombre'));
         $grid->column('description', __('Descripción'));
 
         $grid->standard('Norma superior')->display(function ($standard) {
