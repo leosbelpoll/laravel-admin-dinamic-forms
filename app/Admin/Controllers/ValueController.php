@@ -35,6 +35,8 @@ class ValueController extends AdminController
 
         $grid->disableExport();
 
+        $grid->model()->select('user_id', 'project_id', 'standard_id', 'formulario_id')->groupBy('user_id', 'project_id', 'standard_id', 'formulario_id', 'unique_group');
+
         $grid->user('Usuario')->display(function ($user) {
             if ($user) {
                 return "<span>{$user['name']}</span>";
@@ -58,15 +60,6 @@ class ValueController extends AdminController
                 return "<span>{$formulario['name']}</span>";
             }
         });
-
-        $grid->field('Campo')->display(function ($field) {
-            if ($field) {
-                return "<span>{$field['name']}</span>";
-            }
-        });
-
-        $grid->column('value', __('Valor'));
-        // $grid->column('unique_group', __('Unique group'));
 
         $grid->filter(function ($filter) {
             $filter->disableIdFilter();
@@ -94,12 +87,6 @@ class ValueController extends AdminController
                     $query->where('name', 'ilike', "%{$this->input}%");
                 });
             }, 'Formulario');
-
-            $filter->where(function ($query) {
-                $query->whereHas('field', function ($query) {
-                    $query->where('name', 'ilike', "%{$this->input}%");
-                });
-            }, 'Campo');
         });
 
 
