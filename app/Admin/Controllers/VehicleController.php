@@ -106,10 +106,55 @@ class VehicleController extends AdminController
     {
         $show = new Show(Vehicle::findOrFail($id));
 
-        $show->field('name', __('Título'));
-        $show->field('description', __('Descripción'));
-        $show->field('created_at', __('Creado'));
-        $show->field('updated_at', __('Modificado'));
+        $show->panel()
+            ->tools(function ($tools) {
+                $tools->disableEdit();
+                $tools->disableDelete();
+            });;
+
+        $show->field('user_id', 'Usuario')->as(function ($id) {
+            $item = User::find($id);
+            return $item->username;
+        });
+
+        $show->field('project_id', 'Proyecto')->as(function ($id) {
+            $item = Project::find($id);
+            return $item->name;
+        });
+
+        $show->field('standard_id', 'Norma')->as(function ($id) {
+            $item = Standard::find($id);
+            return $item->name;
+        });
+
+        $show->field('no_placa_id', 'Número de placa')->as(function ($id) {
+            $item = NoPlaca::find($id);
+            return $item->name;
+        });
+
+        $show->field('recorrido_inicial', 'Recorrido inicial');
+        $show->field('recorrido_inicial_image', 'Recorrido inicial imagen')->image();
+        $show->field('recorrido_final', 'Recorrido final');
+        $show->field('recorrido_final_image', 'Recorrido final imagen')->image();
+        $show->field('galones_comprados', 'Galones comprados');
+        $show->field('galones_comprados_image', 'Galones comprados imagen')->image();
+        $show->field('bomba_abastecimiento_id', 'Bomba de abastecimiento')->as(function ($id) {
+            $item = BombaAbastecimiento::find($id);
+            return $item->name;
+        });
+
+        $show->field('sistema_amortiguacion_id', 'Sistema amortiguación')->as(function ($id) {
+            $item = SistemaAmortiguacion::find($id);
+            return $item->name;
+        });
+
+        $show->field('explicacion_capacitacion', 'Explicación capacitación');
+        $show->field('estado_medicion_id', 'Estado de medición')->as(function ($id) {
+            $item = EstadoMedicion::find($id);
+            return $item->name;
+        });
+
+        $show->field('presion_neumaticos', 'Presión neumáticos');
 
         return $show;
     }

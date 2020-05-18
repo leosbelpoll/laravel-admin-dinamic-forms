@@ -16,4 +16,10 @@ return [
     'unique' => 'Este :attribute ya ha sido asignado.',
     'required' => 'El campo :attribute es requerido.',
     'numeric' => 'El campo :attribute es numérico.',
+    'max' => [
+        'numeric' => 'El campo :attribute no puede ser mayor que :max.',
+        'file' => 'El campo :attribute no puede exceder los :max kilobytes.',
+        'string' => 'El campo :attribute no puede tener más de :max caracteres.',
+        'array' => 'EL campo :attribute no puede tener  más de :max elementos.',
+    ],
 ];

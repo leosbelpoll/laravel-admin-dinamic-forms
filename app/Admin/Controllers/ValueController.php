@@ -117,6 +117,12 @@ class ValueController extends AdminController
     {
         $show = new Show(Value::findOrFail($id));
 
+        $show->panel()
+            ->tools(function ($tools) {
+                $tools->disableEdit();
+                $tools->disableDelete();
+            });;
+
         $show->field('id', __('Id'));
         $show->field('value', __('Value'));
         $show->field('unique_group', __('Unique group'));
