@@ -26,16 +26,13 @@ class ValueController extends AdminController
     {
         $grid = new Grid(new Value());
 
-        $grid->actions(function ($actions) {
-            $actions->disableDelete();
-            $actions->disableEdit();
-        });
-
+        $grid->disableActions();
+        
         $grid->disableCreateButton();
 
         $grid->disableExport();
 
-        $grid->model()->select('user_id', 'project_id', 'standard_id', 'formulario_id')->groupBy('user_id', 'project_id', 'standard_id', 'formulario_id', 'unique_group');
+        $grid->model()->select('user_id', 'project_id', 'standard_id', 'formulario_id', 'unique_group')->groupBy('user_id', 'project_id', 'standard_id', 'formulario_id', 'unique_group');
 
         $grid->user('Usuario')->display(function ($user) {
             if ($user) {
@@ -60,6 +57,14 @@ class ValueController extends AdminController
                 return "<span>{$formulario['name']}</span>";
             }
         });
+
+        $grid->column('unique_group', ' ')->display(function ($formulario) {
+            if ($formulario) {
+                return "Detalles";
+            }
+        })->link(function($item){
+            return '/admin/api/values/' . $item->unique_group;
+        }, null);
 
         $grid->filter(function ($filter) {
             $filter->disableIdFilter();
