@@ -28,11 +28,6 @@ class FormularioController extends AdminController
     {
         $grid = new Grid(new Formulario());
 
-        $grid->actions(function ($actions) {
-            $actions->disableDelete();
-            $actions->disableEdit();
-        });
-
         $grid->disableExport();
 
         $grid->column('name', __('Nombre'));

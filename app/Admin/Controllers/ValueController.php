@@ -26,7 +26,12 @@ class ValueController extends AdminController
     {
         $grid = new Grid(new Value());
 
-        
+        $grid->actions(function ($actions) {
+            $actions->disableDelete();
+            $actions->disableEdit();
+        });
+
+        $grid->disableCreateButton();
 
         $grid->disableExport();
 

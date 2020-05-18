@@ -34,6 +34,11 @@ class VehicleController extends AdminController
     {
         $grid = new Grid(new Vehicle());
 
+        $grid->actions(function ($actions) {
+            $actions->disableDelete();
+            $actions->disableEdit();
+        });
+
         $grid->disableCreateButton();
 
         $grid->disableExport();
