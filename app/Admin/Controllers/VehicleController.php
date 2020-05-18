@@ -4,7 +4,7 @@ namespace App\Admin\Controllers;
 
 use App\BombaAbastecimiento;
 use App\EstadoMedicion;
-use App\NoPlaca;
+use App\Automovil;
 use App\Project;
 use App\SistemaAmortiguacion;
 use App\Standard;
@@ -61,7 +61,7 @@ class VehicleController extends AdminController
             }
         });
 
-        $grid->noplaca('Número de placa')->display(function ($noPlaca) {
+        $grid->automovil('Número de placa')->display(function ($noPlaca) {
             if ($noPlaca) {
                 return "<span>{$noPlaca['name']}</span>";
             }
@@ -127,8 +127,8 @@ class VehicleController extends AdminController
             return $item->name;
         });
 
-        $show->field('no_placa_id', 'Número de placa')->as(function ($id) {
-            $item = NoPlaca::find($id);
+        $show->field('automovil_id', 'Número de placa')->as(function ($id) {
+            $item = Automovil::find($id);
             return $item->name;
         });
 
@@ -177,8 +177,8 @@ class VehicleController extends AdminController
         $standards = Standard::all()->pluck('name', 'id')->toArray();
         $form->select('standard_id', 'Norma')->options($standards);
 
-        $noPlacas = NoPlaca::all()->pluck('name', 'id')->toArray();
-        $form->select('no_placa_id', 'Número de Placa')->options($noPlacas);
+        $noPlacas = Automovil::all()->pluck('name', 'id')->toArray();
+        $form->select('automovil_id', 'Número de Placa')->options($noPlacas);
 
         $form->text('recorrido_inicial', 'Recorrido inicial')->pattern('[0-9]+')->placeholder('Km/h');
 

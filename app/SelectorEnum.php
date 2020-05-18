@@ -4,7 +4,7 @@ namespace App;
 
 abstract class SelectorEnum
 {
-    const NO_PLACA = 'NO_PLACA';
+    const AUTOMOVIL = 'AUTOMOVIL';
     const BOMBA_ABASTECIMIENTO = 'BOMBA_ABASTECIMIENTO';
     const SISTEMA_AMORTIGUACION = 'SISTEMA_AMORTIGUACION';
     const ESTADO_MEDICION = 'ESTADO_MEDICION';

@@ -16,46 +16,16 @@ class InitialDataSeeder extends Seeder
      */
     public function run()
     {
-        // Placa numbers
-
-        DB::table('no_placas')->insert([/* id => 1 */'name' => 'Placa 1']);
-        DB::table('no_placas')->insert([/* id => 2 */'name' => 'Placa 2']);
-        DB::table('no_placas')->insert([/* id => 3 */'name' => 'Placa 3']);
-
-        // Bombas de abastecimiento
-
-        DB::table('bombas_abastecimiento')->insert([/* id => 1 */'name' => 'Bomba 1']);
-        DB::table('bombas_abastecimiento')->insert([/* id => 2 */'name' => 'Bomba 2']);
-        DB::table('bombas_abastecimiento')->insert([/* id => 3 */'name' => 'Bomba 3']);
-
-        // Sistemas de amortiguacion
-
-        DB::table('sistemas_amortiguacion')->insert([/* id => 1 */'name' => 'Sistema amortiguación 1']);
-        DB::table('sistemas_amortiguacion')->insert([/* id => 2 */'name' => 'Sistema amortiguación 2']);
-        DB::table('sistemas_amortiguacion')->insert([/* id => 3 */'name' => 'Sistema amortiguación 3']);
-
-        // Estados de medicion
-
-        DB::table('estados_medicion')->insert([/* id => 1 */'name' => 'Estado medición 1']);
-        DB::table('estados_medicion')->insert([/* id => 2 */'name' => 'Estado medición 2']);
-        DB::table('estados_medicion')->insert([/* id => 3 */'name' => 'Estado medición 3']);
-
-        // Generadores de gasolina
-
-        DB::table('generadores_gasolina')->insert([/* id => 1 */'name' => 'Generador gasolina 1']);
-        DB::table('generadores_gasolina')->insert([/* id => 2 */'name' => 'Generador gasolina 2']);
-        DB::table('generadores_gasolina')->insert([/* id => 3 */'name' => 'Generador gasolina 3']);
-
         // Initial Fields
 
-        DB::table('fields')->insert([/* id => 1 */'name' => 'Peligrosos','label' => 'Peligrosos', 'type' => FieldTypeEnum::NUMBER, 'placeholder' => 'Kg', 'rules' => 'required']);
-        DB::table('fields')->insert([/* id => 2 */'name' => 'Orgánicos','label' => 'Orgánicos', 'type' => FieldTypeEnum::NUMBER, 'placeholder' => 'Kg', 'rules' => 'required']);
-        DB::table('fields')->insert([/* id => 3 */'name' => 'Plásticos','label' => 'Plásticos', 'type' => FieldTypeEnum::NUMBER, 'placeholder' => 'Kg', 'rules' => 'required']);
-        DB::table('fields')->insert([/* id => 4 */'name' => 'Otros','label' => 'Otros', 'type' => FieldTypeEnum::NUMBER, 'placeholder' => 'Kg', 'rules' => 'required']);
+        DB::table('fields')->insert([/* id => 1 */'name' => 'Peligrosos', 'label' => 'Peligrosos', 'type' => FieldTypeEnum::NUMBER, 'placeholder' => 'Kg', 'rules' => 'required']);
+        DB::table('fields')->insert([/* id => 2 */'name' => 'Orgánicos', 'label' => 'Orgánicos', 'type' => FieldTypeEnum::NUMBER, 'placeholder' => 'Kg', 'rules' => 'required']);
+        DB::table('fields')->insert([/* id => 3 */'name' => 'Plásticos', 'label' => 'Plásticos', 'type' => FieldTypeEnum::NUMBER, 'placeholder' => 'Kg', 'rules' => 'required']);
+        DB::table('fields')->insert([/* id => 4 */'name' => 'Otros', 'label' => 'Otros', 'type' => FieldTypeEnum::NUMBER, 'placeholder' => 'Kg', 'rules' => 'required']);
         DB::table('fields')->insert([/* id => 5 */'name' => 'Impacto ambiental', 'label' => 'Describa el impacto ambiental de las actividades realizadas', 'type' => FieldTypeEnum::LONG_TEXT, 'rules' => 'required']);
         DB::table('fields')->insert([/* id => 6 */'name' => 'Generador de gasolina', 'label' => 'Cuál generador abasteció hoy?', 'type' => FieldTypeEnum::SELECTOR, 'selector' => SelectorEnum::GENERADOR_GASOLINA, 'placeholder' => 'No', 'rules' => 'required']);
-        DB::table('fields')->insert([/* id => 7 */'name' => 'Galones comprados','label' => 'Galones comprados', 'type' => FieldTypeEnum::NUMBER, 'placeholder' => 'No', 'rules' => 'required']);
-        DB::table('fields')->insert([/* id => 8 */'name' => 'Horas de uno?','label' => 'Horas de uno?', 'type' => FieldTypeEnum::NUMBER, 'placeholder' => 'No', 'rules' => 'required']);
+        DB::table('fields')->insert([/* id => 7 */'name' => 'Galones comprados', 'label' => 'Galones comprados', 'type' => FieldTypeEnum::NUMBER, 'placeholder' => 'No', 'rules' => 'required']);
+        DB::table('fields')->insert([/* id => 8 */'name' => 'Horas de uno?', 'label' => 'Horas de uno?', 'type' => FieldTypeEnum::NUMBER, 'placeholder' => 'No', 'rules' => 'required']);
 
         // Initial Forms
 
@@ -110,5 +80,68 @@ class InitialDataSeeder extends Seeder
         DB::table('project_standard')->insert([/* id => 4 */'project_id' => 2, 'standard_id' => 1]);
         DB::table('project_standard')->insert([/* id => 5 */'project_id' => 2, 'standard_id' => 2]);
         DB::table('project_standard')->insert([/* id => 6 */'project_id' => 2, 'standard_id' => 3]);
+
+
+
+        // TODO: Remove FAKE data
+
+        // Marcas
+
+        DB::table('marcas')->insert([/* id => 1 */'name' => 'Ferrari']);
+        DB::table('marcas')->insert([/* id => 2 */'name' => 'Tesla']);
+        DB::table('marcas')->insert([/* id => 3 */'name' => 'Honda']);
+
+        // Modelos
+
+        DB::table('modelos')->insert([/* id => 1 */'name' => '488 GTB', 'marca_id' => 1]);
+        DB::table('modelos')->insert([/* id => 2 */'name' => '812 Superfast', 'marca_id' => 1]);
+        DB::table('modelos')->insert([/* id => 3 */'name' => 'Civic', 'marca_id' => 3]);
+        DB::table('modelos')->insert([/* id => 4 */'name' => 'Jazz', 'marca_id' => 3]);
+        DB::table('modelos')->insert([/* id => 5 */'name' => 'Roadster', 'marca_id' => 2]);
+        DB::table('modelos')->insert([/* id => 6 */'name' => 'Cybertruck', 'marca_id' => 2]);
+
+        // Tipos de Vehiculos
+
+        DB::table('tipos_vehiculo')->insert([/* id => 1 */'name' => 'Tipo vehiculo 1']);
+        DB::table('tipos_vehiculo')->insert([/* id => 2 */'name' => 'Tipo vehiculo 2']);
+        DB::table('tipos_vehiculo')->insert([/* id => 3 */'name' => 'Tipo vehiculo 3']);
+
+        // Tipos de combustible
+
+        DB::table('tipos_combustible')->insert([/* id => 1 */'name' => 'Tipo de combustible 1']);
+        DB::table('tipos_combustible')->insert([/* id => 2 */'name' => 'Tipo de combustible 2']);
+        DB::table('tipos_combustible')->insert([/* id => 3 */'name' => 'Tipo de combustible 3']);
+
+        // Automoviles
+
+        DB::table('automoviles')->insert([/* id => 1 */'no_placa' => 'Placa 1', 'marca_id' => 1, 'modelo_id' => 1, 'tipo_vehiculo_id' => 2, 'tipo_combustible_id' => 1, 'cilindraje' => 3000]);
+        DB::table('automoviles')->insert([/* id => 2 */'no_placa' => 'Placa 2', 'marca_id' => 1, 'modelo_id' => 2, 'tipo_vehiculo_id' => 1, 'tipo_combustible_id' => 3, 'cilindraje' => 2500]);
+        DB::table('automoviles')->insert([/* id => 3 */'no_placa' => 'Placa 3', 'marca_id' => 3, 'modelo_id' => 3, 'tipo_vehiculo_id' => 2, 'tipo_combustible_id' => 1, 'cilindraje' => 6000]);
+        DB::table('automoviles')->insert([/* id => 4 */'no_placa' => 'Placa 4', 'marca_id' => 2, 'modelo_id' => 5, 'tipo_vehiculo_id' => 3, 'tipo_combustible_id' => 2, 'cilindraje' => 1000]);
+        DB::table('automoviles')->insert([/* id => 5 */'no_placa' => 'Placa 5', 'marca_id' => 2, 'modelo_id' => 6, 'tipo_vehiculo_id' => 2, 'tipo_combustible_id' => 2, 'cilindraje' => 1300]);
+
+        // Bombas de abastecimiento
+
+        DB::table('bombas_abastecimiento')->insert([/* id => 1 */'name' => 'Bomba 1']);
+        DB::table('bombas_abastecimiento')->insert([/* id => 2 */'name' => 'Bomba 2']);
+        DB::table('bombas_abastecimiento')->insert([/* id => 3 */'name' => 'Bomba 3']);
+
+        // Sistemas de amortiguacion
+
+        DB::table('sistemas_amortiguacion')->insert([/* id => 1 */'name' => 'Sistema amortiguación 1']);
+        DB::table('sistemas_amortiguacion')->insert([/* id => 2 */'name' => 'Sistema amortiguación 2']);
+        DB::table('sistemas_amortiguacion')->insert([/* id => 3 */'name' => 'Sistema amortiguación 3']);
+
+        // Estados de medicion
+
+        DB::table('estados_medicion')->insert([/* id => 1 */'name' => 'Estado medición 1']);
+        DB::table('estados_medicion')->insert([/* id => 2 */'name' => 'Estado medición 2']);
+        DB::table('estados_medicion')->insert([/* id => 3 */'name' => 'Estado medición 3']);
+
+        // Generadores de gasolina
+
+        DB::table('generadores_gasolina')->insert([/* id => 1 */'name' => 'Generador gasolina 1']);
+        DB::table('generadores_gasolina')->insert([/* id => 2 */'name' => 'Generador gasolina 2']);
+        DB::table('generadores_gasolina')->insert([/* id => 3 */'name' => 'Generador gasolina 3']);
     }
 }

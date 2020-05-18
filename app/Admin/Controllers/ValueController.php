@@ -6,7 +6,7 @@ use App\BombaAbastecimiento;
 use App\EstadoMedicion;
 use App\FieldTypeEnum;
 use App\GeneradorGasolina;
-use App\NoPlaca;
+use App\Automovil;
 use App\SelectorEnum;
 use App\SistemaAmortiguacion;
 use App\Value;
@@ -132,8 +132,8 @@ class ValueController extends AdminController
                 $name = null;
 
                 switch ($value->field->selector) {
-                    case SelectorEnum::NO_PLACA:
-                        $name = NoPlaca::find($value->value)->name;
+                    case SelectorEnum::AUTOMOVIL:
+                        $name = Automovil::find($value->value)->name;
                         break;
                     case SelectorEnum::BOMBA_ABASTECIMIENTO:
                         $name = BombaAbastecimiento::find($value->value)->name;

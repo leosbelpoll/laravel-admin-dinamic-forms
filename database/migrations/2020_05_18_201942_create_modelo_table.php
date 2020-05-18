@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateNoPlacasTable extends Migration
+class CreateModeloTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,10 @@ class CreateNoPlacasTable extends Migration
      */
     public function up()
     {
-        Schema::create('no_placas', function (Blueprint $table) {
+        Schema::create('modelos', function (Blueprint $table) {
             $table->id();
             $table->string("name")->unique();
+            $table->integer("marca_id")->unsigned();
             $table->text("description")->nullable();
             $table->timestamps();
         });
@@ -28,6 +29,6 @@ class CreateNoPlacasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('no_placas');
+        Schema::dropIfExists('modelos');
     }
 }

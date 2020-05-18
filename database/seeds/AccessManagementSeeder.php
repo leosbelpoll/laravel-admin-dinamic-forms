@@ -63,14 +63,18 @@ class AccessManagementSeeder extends Seeder
         DB::table('admin_menu')->insert([/* id => 10 */'parent_id' => 0, 'order' => 10, 'title' => 'Valores Formularios', 'icon' => 'fa-wpforms', 'uri' => 'api/values']);
         DB::table('admin_menu')->insert([/* id => 11 */'parent_id' => 0, 'order' => 11, 'title' => 'Vehículos', 'icon' => 'fa-car', 'uri' => 'api/vehicles']);
         DB::table('admin_menu')->insert([/* id => 12 */'parent_id' => 0, 'order' => 100, 'title' => 'Nomencladores', 'icon' => 'fa-cog', 'uri' => '']);
-        DB::table('admin_menu')->insert([/* id => 13 */'parent_id' => 12, 'order' => 101, 'title' => 'Números de Placas', 'icon' => 'fa-list', 'uri' => 'api/no-placas']);
-        DB::table('admin_menu')->insert([/* id => 14 */'parent_id' => 12, 'order' => 102, 'title' => 'Bombas de Abastecimiento', 'icon' => 'fa-list', 'uri' => 'api/bombas-abastecimiento']);
-        DB::table('admin_menu')->insert([/* id => 15 */'parent_id' => 12, 'order' => 103, 'title' => 'Sistemas de Amortiguación', 'icon' => 'fa-list', 'uri' => 'api/sistemas-amortiguacion']);
-        DB::table('admin_menu')->insert([/* id => 16 */'parent_id' => 12, 'order' => 104, 'title' => 'Estados de Medición', 'icon' => 'fa-list', 'uri' => 'api/estados-medicion']);
-        DB::table('admin_menu')->insert([/* id => 17 */'parent_id' => 12, 'order' => 105, 'title' => 'Generadores de Gasolina', 'icon' => 'fa-list', 'uri' => 'api/generadores-gasolina']);
-        DB::table('admin_menu')->insert([/* id => 18 */'parent_id' => 0, 'order' => 90, 'title' => 'Formularios dinámicos', 'icon' => 'fa-cog', 'uri' => '']);
-        DB::table('admin_menu')->insert([/* id => 19 */'parent_id' => 18, 'order' => 91, 'title' => 'Formularios', 'icon' => 'fa-list', 'uri' => 'api/formularios']);
-        DB::table('admin_menu')->insert([/* id => 20 */'parent_id' => 18, 'order' => 92, 'title' => 'Campos', 'icon' => 'fa-list', 'uri' => 'api/fields']);
+        DB::table('admin_menu')->insert([/* id => 13 */'parent_id' => 12, 'order' => 101, 'title' => 'Automóviles', 'icon' => 'fa-list', 'uri' => 'api/automoviles']);
+        DB::table('admin_menu')->insert([/* id => 14 */'parent_id' => 12, 'order' => 102, 'title' => 'Marcas', 'icon' => 'fa-list', 'uri' => 'api/marcas']);
+        DB::table('admin_menu')->insert([/* id => 15 */'parent_id' => 12, 'order' => 103, 'title' => 'Modelos', 'icon' => 'fa-list', 'uri' => 'api/modelos']);
+        DB::table('admin_menu')->insert([/* id => 16 */'parent_id' => 12, 'order' => 104, 'title' => 'Tipos de vehículo', 'icon' => 'fa-list', 'uri' => 'api/tipos-vehiculo']);
+        DB::table('admin_menu')->insert([/* id => 17 */'parent_id' => 12, 'order' => 105, 'title' => 'Tipos de combustible', 'icon' => 'fa-list', 'uri' => 'api/tipos-combustible']);
+        DB::table('admin_menu')->insert([/* id => 18 */'parent_id' => 12, 'order' => 106, 'title' => 'Bombas de Abastecimiento', 'icon' => 'fa-list', 'uri' => 'api/bombas-abastecimiento']);
+        DB::table('admin_menu')->insert([/* id => 19 */'parent_id' => 12, 'order' => 107, 'title' => 'Sistemas de Amortiguación', 'icon' => 'fa-list', 'uri' => 'api/sistemas-amortiguacion']);
+        DB::table('admin_menu')->insert([/* id => 20 */'parent_id' => 12, 'order' => 108, 'title' => 'Estados de Medición', 'icon' => 'fa-list', 'uri' => 'api/estados-medicion']);
+        DB::table('admin_menu')->insert([/* id => 21 */'parent_id' => 12, 'order' => 109, 'title' => 'Generadores de Gasolina', 'icon' => 'fa-list', 'uri' => 'api/generadores-gasolina']);
+        DB::table('admin_menu')->insert([/* id => 22 */'parent_id' => 0, 'order' => 90, 'title' => 'Formularios dinámicos', 'icon' => 'fa-cog', 'uri' => '']);
+        DB::table('admin_menu')->insert([/* id => 23 */'parent_id' => 22, 'order' => 91, 'title' => 'Formularios', 'icon' => 'fa-list', 'uri' => 'api/formularios']);
+        DB::table('admin_menu')->insert([/* id => 24 */'parent_id' => 22, 'order' => 92, 'title' => 'Campos', 'icon' => 'fa-list', 'uri' => 'api/fields']);
 
         DB::table('admin_role_menu')->insert(['role_id' => 1, 'menu_id' => 2]);
     }

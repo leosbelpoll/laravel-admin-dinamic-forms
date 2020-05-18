@@ -23,7 +23,7 @@ class VehicleController extends Controller
             'user_id' => $userIdValidation,
             'project_id' => 'required|numeric',
             'standard_id' => 'required|numeric',
-            'no_placa_id' => 'required|numeric',
+            'automovil_id' => 'required|numeric',
             'recorrido_inicial' => 'required|numeric',
             'recorrido_inicial_image' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
             'recorrido_final' => 'required|numeric',

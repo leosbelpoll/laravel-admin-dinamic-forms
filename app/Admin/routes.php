@@ -19,11 +19,15 @@ Route::group([
 ], function (Router $router) {
     $router->resource('projects', ProjectController::class);
     $router->resource('standards', StandardController::class);
-    $router->resource('no-placas', NoPlacaController::class);
+    $router->resource('automoviles', AutomovilController::class);
+    $router->resource('modelos', ModeloController::class);
+    $router->resource('tipos-vehiculo', TipoVehiculoController::class);
+    $router->resource('tipos-combustible', TipoCombustibleController::class);
     $router->resource('bombas-abastecimiento', BombaAbastecimientoController::class);
     $router->resource('sistemas-amortiguacion', SistemaAmortiguacionController::class);
     $router->resource('estados-medicion', EstadoMedicionController::class);
     $router->resource('generadores-gasolina', GeneradorGasolinaController::class);
+    $router->resource('marcas', MarcaController::class);
     $router->resource('fields', FieldController::class);
     $router->resource('formularios', FormularioController::class);
     $router->resource('vehicles', VehicleController::class)->only([

@@ -12,7 +12,7 @@ class Vehicle extends Model
         'user_id',
         'project_id',
         'standard_id',
-        'no_placa_id',
+        'automovil_id',
         'recorrido_inicial',
         'recorrido_inicial_image',
         'recorrido_final',
@@ -43,7 +43,7 @@ class Vehicle extends Model
 
     public function noPlaca()
     {
-        return $this->belongsTo(NoPlaca::class);
+        return $this->belongsTo(Automovil::class);
     }
 
     public function bombaAbastecimiento()

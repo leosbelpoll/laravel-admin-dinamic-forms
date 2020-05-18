@@ -43,8 +43,8 @@ Route::middleware('auth:api')->group(function ($router) {
 
     // Nomencladores
 
-    Route::get('/no-placas', 'NoPlacaController@getAll')->name('getAllNoPlacas');
-    Route::get('/no-placas/{id}', 'NoPlacaController@getAll')->name('getNoPlacas');
+    Route::get('/automoviles', 'AutomovilController@getAll')->name('getAllAutomoviles');
+    Route::get('/automoviles/{id}', 'AutomovilController@getAll')->name('getAutomoviles');
 
     Route::get('/bombas-abastecimiento', 'BombaAbastecimientoController@getAll')->name('getAllBombasAbastecimiento');
     Route::get('/bombas-abastecimiento/{id}', 'BombaAbastecimientoController@getAll')->name('getBombasAbastecimiento');
@@ -57,6 +57,18 @@ Route::middleware('auth:api')->group(function ($router) {
 
     Route::get('/generadores-gasolina', 'GeneradorGasolinaController@getAll')->name('getAllGeneradoresGasolina');
     Route::get('/generadores-gasolina/{id}', 'GeneradorGasolinaController@getAll')->name('getGeneradoresGasolina');
+
+    Route::get('/marcas', 'MarcaController@getAll')->name('getAllMarcas');
+    Route::get('/marcas/{id}', 'MarcaController@getAll')->name('getMarcas');
+
+    Route::get('/modelos', 'ModeloController@getAll')->name('getAllModelos');
+    Route::get('/modelos/{id}', 'ModeloController@getAll')->name('getModelos');
+
+    Route::get('/tipos-vehiculos', 'TipoVehiculoController@getAll')->name('getAllTiposVehiculo');
+    Route::get('/tipos-vehiculos/{id}', 'TipoVehiculoController@getAll')->name('getTiposVehiculo');
+
+    Route::get('/tipos-combustible', 'TipoCombustibleaController@getAll')->name('getAllTiposCombustible');
+    Route::get('/tipos-combustible/{id}', 'TipoCombustibleaController@getAll')->name('getTiposCombustible');
 
     // Form Data
 

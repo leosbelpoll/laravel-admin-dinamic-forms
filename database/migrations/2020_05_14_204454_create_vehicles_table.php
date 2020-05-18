@@ -18,7 +18,7 @@ class CreateVehiclesTable extends Migration
             $table->unsignedInteger('user_id');
             $table->unsignedInteger('project_id');
             $table->unsignedInteger('standard_id');
-            $table->unsignedInteger('no_placa_id');
+            $table->unsignedInteger('automovil_id');
             $table->double('recorrido_inicial', 8, 2);
             $table->string('recorrido_inicial_image');
             $table->double('recorrido_final', 8, 2);

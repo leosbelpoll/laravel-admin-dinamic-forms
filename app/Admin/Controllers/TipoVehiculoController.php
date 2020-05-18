@@ -2,20 +2,20 @@
 
 namespace App\Admin\Controllers;
 
-use App\NoPlaca;
+use App\TipoVehiculo;
 use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
 use Encore\Admin\Show;
 
-class NoPlacaController extends AdminController
+class TipoVehiculoController extends AdminController
 {
     /**
      * Title for current resource.
      *
      * @var string
      */
-    protected $title = 'Números de Placas';
+    protected $title = 'Tipos de vehículos';
 
     /**
      * Make a grid builder.
@@ -24,12 +24,11 @@ class NoPlacaController extends AdminController
      */
     protected function grid()
     {
-        $grid = new Grid(new NoPlaca());
+        $grid = new Grid(new TipoVehiculo());
 
         $grid->disableExport();
 
         $grid->column('name', 'Nombre');
-
         $grid->column('description', 'Descripción');
 
         $grid->filter(function ($filter) {
@@ -50,7 +49,7 @@ class NoPlacaController extends AdminController
      */
     protected function detail($id)
     {
-        $show = new Show(NoPlaca::findOrFail($id));
+        $show = new Show(TipoVehiculo::findOrFail($id));
 
         $show->field('name', __('Título'));
         $show->field('description', __('Descripción'));
@@ -67,12 +66,12 @@ class NoPlacaController extends AdminController
      */
     protected function form()
     {
-        $form = new Form(new NoPlaca());
+        $form = new Form(new TipoVehiculo());
 
         $form->text('name', 'Título')
             ->required()
-            ->creationRules(['required', "unique:no_placas"])
-            ->updateRules(['required', "unique:no_placas,name,{{id}}"]);
+            ->creationRules(['required', "unique:tipos_vehiculo"])
+            ->updateRules(['required', "unique:tipos_vehiculo,name,{{id}}"]);
 
         $form->textarea('description', 'Descripción');
 

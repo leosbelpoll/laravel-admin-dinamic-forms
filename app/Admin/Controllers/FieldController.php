@@ -22,7 +22,7 @@ class FieldController extends AdminController
 
     private $types = [FieldTypeEnum::NUMBER => 'Número', FieldTypeEnum::SHORT_TEXT => 'Texto corto', FieldTypeEnum::LONG_TEXT => 'Texto largo', FieldTypeEnum::SELECTOR => 'Selector', FieldTypeEnum::IMAGE => 'Imágen'];
 
-    private $selectors = [SelectorEnum::NO_PLACA => 'Número de placa', SelectorEnum::BOMBA_ABASTECIMIENTO => 'Bomba de abastecimiento', SelectorEnum::SISTEMA_AMORTIGUACION => 'Sistema de amortiguación', SelectorEnum::ESTADO_MEDICION => 'Estado de medición', SelectorEnum::GENERADOR_GASOLINA => 'Generador de gasolina'];
+    private $selectors = [SelectorEnum::AUTOMOVIL => 'Número de placa', SelectorEnum::BOMBA_ABASTECIMIENTO => 'Bomba de abastecimiento', SelectorEnum::SISTEMA_AMORTIGUACION => 'Sistema de amortiguación', SelectorEnum::ESTADO_MEDICION => 'Estado de medición', SelectorEnum::GENERADOR_GASOLINA => 'Generador de gasolina'];
 
     /**
      * Make a grid builder.
