@@ -15,7 +15,7 @@ class CreateAutomovilesTable extends Migration
     {
         Schema::create('automoviles', function (Blueprint $table) {
             $table->id();
-            $table->string("no_placa")->unique();
+            $table->string("name")->unique();
             $table->integer("marca_id")->unsigned();
             $table->integer("modelo_id")->unsigned();
             $table->integer("tipo_vehiculo_id")->unsigned();

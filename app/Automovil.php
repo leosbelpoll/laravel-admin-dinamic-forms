@@ -8,8 +8,9 @@ class Automovil extends Model
 {
     protected $table = 'automoviles';
 
+    // name <- no_placa // I changed every Selector must have a name
     protected $fillable = [
-        'no_placa', 'marca_id', 'modelo_id', 'tipo_vehiculo_id', 'tipo_combustible_id', 'description',
+        'name', 'marca_id', 'modelo_id', 'tipo_vehiculo_id', 'tipo_combustible_id', 'description',
     ];
 
     public function marca()

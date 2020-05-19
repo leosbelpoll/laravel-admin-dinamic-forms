@@ -32,7 +32,7 @@ class AutomovilController extends AdminController
 
         $grid->disableExport();
 
-        $grid->column('no_placa', 'Número de placa');
+        $grid->column('name', 'Número de placa');
 
         $grid->marca('Marca')->display(function ($item) {
             if ($item) {
@@ -80,7 +80,7 @@ class AutomovilController extends AdminController
     {
         $show = new Show(Automovil::findOrFail($id));
 
-        $show->field('no_placa', __('Número de Placa'));
+        $show->field('name', __('Número de Placa'));
 
         $show->field('marca_id', 'Marca')->as(function ($id) {
             $item = Marca::find($id);
@@ -121,10 +121,10 @@ class AutomovilController extends AdminController
     {
         $form = new Form(new Automovil());
 
-        $form->text('no_placa', 'Número de placa')
+        $form->text('name', 'Número de placa')
             ->required()
             ->creationRules(['required', "unique:automoviles"])
-            ->updateRules(['required', "unique:automoviles,no_placa,{{id}}"]);
+            ->updateRules(['required', "unique:automoviles,name,{{id}}"]);
 
         $marcas = Marca::all()->pluck('name', 'id')->toArray();
         $form->select('marca_id', 'Marca')->options($marcas)->required();

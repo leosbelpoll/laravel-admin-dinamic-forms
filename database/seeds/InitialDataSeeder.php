@@ -114,11 +114,11 @@ class InitialDataSeeder extends Seeder
 
         // Automoviles
 
-        DB::table('automoviles')->insert([/* id => 1 */'no_placa' => 'Placa 1', 'marca_id' => 1, 'modelo_id' => 1, 'tipo_vehiculo_id' => 2, 'tipo_combustible_id' => 1, 'cilindraje' => 3000]);
-        DB::table('automoviles')->insert([/* id => 2 */'no_placa' => 'Placa 2', 'marca_id' => 1, 'modelo_id' => 2, 'tipo_vehiculo_id' => 1, 'tipo_combustible_id' => 3, 'cilindraje' => 2500]);
-        DB::table('automoviles')->insert([/* id => 3 */'no_placa' => 'Placa 3', 'marca_id' => 3, 'modelo_id' => 3, 'tipo_vehiculo_id' => 2, 'tipo_combustible_id' => 1, 'cilindraje' => 6000]);
-        DB::table('automoviles')->insert([/* id => 4 */'no_placa' => 'Placa 4', 'marca_id' => 2, 'modelo_id' => 5, 'tipo_vehiculo_id' => 3, 'tipo_combustible_id' => 2, 'cilindraje' => 1000]);
-        DB::table('automoviles')->insert([/* id => 5 */'no_placa' => 'Placa 5', 'marca_id' => 2, 'modelo_id' => 6, 'tipo_vehiculo_id' => 2, 'tipo_combustible_id' => 2, 'cilindraje' => 1300]);
+        DB::table('automoviles')->insert([/* id => 1 */'name' => 'Placa 1', 'marca_id' => 1, 'modelo_id' => 1, 'tipo_vehiculo_id' => 2, 'tipo_combustible_id' => 1, 'cilindraje' => 3000]);
+        DB::table('automoviles')->insert([/* id => 2 */'name' => 'Placa 2', 'marca_id' => 1, 'modelo_id' => 2, 'tipo_vehiculo_id' => 1, 'tipo_combustible_id' => 3, 'cilindraje' => 2500]);
+        DB::table('automoviles')->insert([/* id => 3 */'name' => 'Placa 3', 'marca_id' => 3, 'modelo_id' => 3, 'tipo_vehiculo_id' => 2, 'tipo_combustible_id' => 1, 'cilindraje' => 6000]);
+        DB::table('automoviles')->insert([/* id => 4 */'name' => 'Placa 4', 'marca_id' => 2, 'modelo_id' => 5, 'tipo_vehiculo_id' => 3, 'tipo_combustible_id' => 2, 'cilindraje' => 1000]);
+        DB::table('automoviles')->insert([/* id => 5 */'name' => 'Placa 5', 'marca_id' => 2, 'modelo_id' => 6, 'tipo_vehiculo_id' => 2, 'tipo_combustible_id' => 2, 'cilindraje' => 1300]);
 
         // Bombas de abastecimiento
 
