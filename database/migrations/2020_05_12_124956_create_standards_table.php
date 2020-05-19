@@ -18,17 +18,9 @@ class CreateStandardsTable extends Migration
             $table->string("name")->unique();
             $table->text("description")->nullable();
             $table->string("type");
-            $table->unsignedInteger('standard_id')->nullable();
-            $table->unsignedInteger('formulario_id')->nullable();
+            $table->integer('standard_id')->unsigned()->nullable();
+            $table->integer('formulario_id')->unsigned()->nullable();
             $table->timestamps();
-        });
-
-        Schema::table('standards', function (Blueprint $table) {
-            $table->foreign('standard_id')->references('id')->on('standards');
-        });
-
-        Schema::table('standards', function (Blueprint $table) {
-            $table->foreign('formulario_id')->references('id')->on('formularios');
         });
     }
 
