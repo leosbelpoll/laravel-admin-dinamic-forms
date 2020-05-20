@@ -5,6 +5,8 @@ namespace App\Admin\Controllers;
 use App\Field;
 use App\Formulario;
 use App\Standard;
+use Encore\Admin\Auth\Database\Permission;
+use Encore\Admin\Auth\Database\Role;
 use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
@@ -75,6 +77,14 @@ class FormularioController extends AdminController
 
         $fields = Field::all()->pluck('name', 'id')->toArray();
         $form->multipleSelect('fields', 'Campos')->options($fields);
+
+        $form->divider('Quiénes tienen acceso a este Formulario?');
+
+        $permissions = Permission::all()->pluck('name', 'id')->toArray();
+        $form->multipleSelect('permissions', 'Permisos')->options($permissions);
+
+        $roles = Role::all()->pluck('name', 'id')->toArray();
+        $form->multipleSelect('roles', 'Roles')->options($roles);
 
         return $form;
     }

@@ -3,6 +3,8 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Encore\Admin\Auth\Database\Permission;
+use Encore\Admin\Auth\Database\Role;
 
 class Formulario extends Model
 {
@@ -20,5 +22,15 @@ class Formulario extends Model
     public function fields()
     {
         return $this->belongsToMany(Field::class);
+    }
+
+    public function permissions()
+    {
+        return $this->belongsToMany(Permission::class);
+    }
+
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class);
     }
 }
