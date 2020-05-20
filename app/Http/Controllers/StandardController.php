@@ -37,7 +37,6 @@ class StandardController extends Controller
 
         $standard->formulario = Formulario::with('fields')->with('permissions')->with('roles')->find($standard->formulario_id);
 
-
         if ($standard->formulario) {
             $user = Auth::user();
 
@@ -62,8 +61,8 @@ class StandardController extends Controller
                     'error' => 'No tiene permisos en este formulario'
                 ], 401);
             }
-
-            return $standard;
         }
+
+        return $standard;
     }
 }
