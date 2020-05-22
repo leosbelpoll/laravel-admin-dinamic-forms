@@ -14,7 +14,7 @@ return [
     */
 
     'unique' => 'Este :attribute ya ha sido asignado.',
-    'required' => 'El campo :attribute es requerido.',
+    'required' => 'El campo :attribute es obligatorio.',
     'numeric' => 'El campo :attribute es numérico.',
     'max' => [
         'numeric' => 'El campo :attribute no puede ser mayor que :max.',

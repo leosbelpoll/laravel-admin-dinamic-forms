@@ -128,7 +128,7 @@ class ValueController extends AdminController
                 $show->field('field_' . $index, __($value->field->name))->as(function () use ($value) {
                     return $value->value;
                 })->image();
-            } else if ($value->field->type == FieldTypeEnum::SELECTOR) {
+            } else if ($value->field->type == FieldTypeEnum::SELECTOR_NOMENCLADOR) {
                 $name = null;
 
                 switch ($value->field->selector) {

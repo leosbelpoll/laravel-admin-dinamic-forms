@@ -23,7 +23,7 @@ class InitialDataSeeder extends Seeder
         DB::table('fields')->insert([/* id => 3 */'name' => 'Plásticos', 'label' => 'Plásticos', 'type' => FieldTypeEnum::NUMBER, 'placeholder' => 'Kg', 'rules' => 'required']);
         DB::table('fields')->insert([/* id => 4 */'name' => 'Otros', 'label' => 'Otros', 'type' => FieldTypeEnum::NUMBER, 'placeholder' => 'Kg', 'rules' => 'required']);
         DB::table('fields')->insert([/* id => 5 */'name' => 'Impacto ambiental', 'label' => 'Describa el impacto ambiental de las actividades realizadas', 'type' => FieldTypeEnum::LONG_TEXT, 'rules' => 'required']);
-        DB::table('fields')->insert([/* id => 6 */'name' => 'Generador de gasolina', 'label' => 'Cuál generador abasteció hoy?', 'type' => FieldTypeEnum::SELECTOR, 'selector' => SelectorEnum::GENERADOR_GASOLINA, 'placeholder' => 'No', 'rules' => 'required']);
+        DB::table('fields')->insert([/* id => 6 */'name' => 'Generador de gasolina', 'label' => 'Cuál generador abasteció hoy?', 'type' => FieldTypeEnum::SELECTOR_NOMENCLADOR, 'selector' => SelectorEnum::GENERADOR_GASOLINA, 'placeholder' => 'No', 'rules' => 'required']);
         DB::table('fields')->insert([/* id => 7 */'name' => 'Galones comprados', 'label' => 'Galones comprados', 'type' => FieldTypeEnum::NUMBER, 'placeholder' => 'No', 'rules' => 'required']);
         DB::table('fields')->insert([/* id => 8 */'name' => 'Horas de uno?', 'label' => 'Horas de uno?', 'type' => FieldTypeEnum::NUMBER, 'placeholder' => 'No', 'rules' => 'required']);
 

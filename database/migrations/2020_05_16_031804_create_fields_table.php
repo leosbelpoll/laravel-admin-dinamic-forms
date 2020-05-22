@@ -21,6 +21,7 @@ class CreateFieldsTable extends Migration
             $table->text("description")->nullable();
             $table->string("type");
             $table->string("selector")->nullable();
+            $table->string("options")->nullable();
             $table->string("rules")->nullable();
             $table->integer('position')->nullable();
             $table->timestamps();

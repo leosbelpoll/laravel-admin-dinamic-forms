@@ -20,7 +20,17 @@ class FieldController extends AdminController
      */
     protected $title = 'Campos';
 
-    private $types = [FieldTypeEnum::NUMBER => 'Número', FieldTypeEnum::SHORT_TEXT => 'Texto corto', FieldTypeEnum::LONG_TEXT => 'Texto largo', FieldTypeEnum::SELECTOR => 'Selector', FieldTypeEnum::IMAGE => 'Imágen'];
+    private $types = [
+        FieldTypeEnum::NUMBER => 'Número',
+        FieldTypeEnum::IMAGE => 'Imágen',
+        FieldTypeEnum::SHORT_TEXT => 'Texto corto',
+        FieldTypeEnum::LONG_TEXT => 'Texto largo',
+        FieldTypeEnum::SELECTOR_NOMENCLADOR => 'Selector tipo nomenclador',
+        FieldTypeEnum::SELECTOR_OPTIONS => 'Selector tipo opciones',
+        FieldTypeEnum::CHECK_OPTIONS_SI_NO_OTRO => 'Check tipo Si/No/Otro',
+        FieldTypeEnum::CHECK_OPTIONS => 'Check tipo opciones',
+        FieldTypeEnum::DATE => 'Fecha',
+    ];
 
     private $selectors = [SelectorEnum::AUTOMOVIL => 'Número de placa', SelectorEnum::BOMBA_ABASTECIMIENTO => 'Bomba de abastecimiento', SelectorEnum::SISTEMA_AMORTIGUACION => 'Sistema de amortiguación', SelectorEnum::ESTADO_MEDICION => 'Estado de medición', SelectorEnum::GENERADOR_GASOLINA => 'Generador de gasolina'];
 
@@ -40,6 +50,7 @@ class FieldController extends AdminController
         $grid->column('placeholder', __('Placeholder'));
         $grid->column('description', __('Descripción'));
         $grid->column('type', __('Tipo'));
+        $grid->column('options', __('Opciones'));
         $grid->column('selector', __('Selector'));
         $grid->column('rules', 'Reglas')->display(function ($rules) {
             $text = $rules ? implode('|', $rules) : "";
@@ -94,11 +105,13 @@ class FieldController extends AdminController
             ->options($this->types)
             ->required();
 
-        $form->select('selector', __('Selector'))
+        $form->text('options', __('Opciones separadas por: "|"'));
+
+        $form->select('selector', __('Selector (Nomenclador)'))
             ->options($this->selectors);
 
         $form->multipleSelect('rules', __('Reglas'))
-            ->options(['required' => 'Requerido']);
+            ->options(['required' => 'Obligatorio']);
         $form->number('position', __('Posición'));
 
         $formularios = Formulario::all()->pluck('name', 'id')->toArray();
