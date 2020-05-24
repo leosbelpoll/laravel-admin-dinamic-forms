@@ -11,7 +11,7 @@ class CrudCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'leito:crud {name : Class (singular) for example User}';
+    protected $signature = 'leito:crud {model} {--attributes=}';
 
     /**
      * The console command description.
@@ -37,94 +37,171 @@ class CrudCommand extends Command
      */
     public function handle()
     {
-        $name = $this->argument('name');
+        $modelName = $this->argument('model');
 
-        // $this->apiController($name);
-        $this->adminController($name);
-        $this->model($name);
-        $this->migration($name);
+        $attributes = collect(explode(';', $this->option('attributes')));
 
-        // Add resource API routes
-        // $apiRoutesLines = file(app_path('routes/api.php'));
-        // array_pop($apiRoutesLines);
-        // $apiRoutesContent = implode('', $apiRoutesLines);
-        // file_put_contents(base_path('routes/api.php'), $apiRoutesContent . "\n\n\t" . 'Route::resource(\'' . $this->str_plural(strtolower($name)) . "', '{$name}Controller');");
+        $this->createModel($modelName, $attributes);
 
-        // Add resource laravel admin routes
-        $adminRoutesLines = file(app_path('/Admin/routes.php'));
-        array_pop($adminRoutesLines);
-        $adminRoutesContent = implode('', $adminRoutesLines);
-        file_put_contents(app_path('/Admin/routes.php'), $adminRoutesContent . "\n\t" . '$router->resource(\'' . $this->str_plural(strtolower($name)) . '\', ' . $name . 'Controller::class);' . PHP_EOL . '});' . PHP_EOL);
-    }   
+        $this->createAdminController($modelName, $attributes);
 
-    protected function model($name)
-    {
-        $modelTemplate = str_replace(
-            ['{{modelName}}'],
-            [$name],
-            $this->getStub('Model')
-        );
+        // $this->createApiController($modelName);
 
-        file_put_contents(app_path("/Model/{$name}.php"), $modelTemplate);
+        $this->createMigration($modelName, $attributes);
+
+        $this->createAdminResourceRoutes($modelName);
+
+        // $this->createApiResourceRoutes($modelName);
+
+        $this->call('migrate');
     }
 
-    protected function migration($name)
+    protected function createModel($modelName, $attributes)
     {
-        $migrationTemplate = str_replace(
-            [
-                '{{modelNamePlural}}',
-                '{{modelNamePluralLowerCase}}',
-            ],
-            [
-                $this->str_plural($name),
-                strtolower($this->str_plural($name)),
-            ],
-            $this->getStub('Migration')
-        );
+        $stub = $stub = $this->getStubReplaced('Model', $modelName);
 
-        $migrationName = date('Y_m_d_His') . '_create_' . strtolower($this->str_plural($name)) . '_table';
+        $formatedAttributes = $attributes->map(function ($attribute) {
+            $attributeName = collect(explode(':', $attribute))[0];
+            return "'" . trim($attributeName) . "'";
+        });
 
-        file_put_contents(base_path("/database/migrations/{$migrationName}.php"), $migrationTemplate);
+        $stub = str_replace('{{attributes}}', $formatedAttributes->implode(',' . PHP_EOL . "\t\t"), $stub);
+
+        file_put_contents(app_path("/Model/{$modelName}.php"), $stub);
     }
 
-    protected function apiController($name)
+    protected function createAdminController($modelName, $attributes)
     {
-        $controllerTemplate = str_replace(
+        $stub = $this->getStubReplaced('AdminController', $modelName);
+
+        $formatedAttributes = $this->getFormattedAttributes($attributes);
+
+        $tableColumns = $formatedAttributes->map(function ($attribute) {
+            return '$grid->column(\'' . $attribute['name'] . '\', __(\'' . $attribute['label'] . '\'));';
+        });
+
+        $detailFields = $formatedAttributes->map(function ($attribute) {
+            return '$show->field(\'' . $attribute['name'] . '\', __(\'' . $attribute['label'] . '\'));';
+        });
+
+        $formFields = $formatedAttributes->map(function ($attribute) {
+            $field = '';
+            if ($attribute['type'] == 'integer') {
+                $field .= '$form->number(\'' . $attribute['name'] . '\', __(\'' . $attribute['label'] . '\'))';
+            } else if ($attribute['type'] == 'text') {
+                $field .= '$form->textarea(\'' . $attribute['name'] . '\', __(\'' . $attribute['label'] . '\'))';
+            } else if ($attribute['type'] == 'select') {
+                $field .= '$form->select(\'' . $attribute['name'] . '\', __(\'' . $attribute['label'] . '\'))->options([])';
+            } else if ($attribute['type'] == 'multipleSelect') {
+                $field .= '$form->multipleSelect(\'' . $attribute['name'] . '\', __(\'' . $attribute['label'] . '\'))->options([])';
+            } else if ($attribute['type'] == 'radios') {
+                $field .= '$form->radio(\'' . $attribute['name'] . '\', __(\'' . $attribute['label'] . '\'))->options([])';
+            } else if ($attribute['type'] == 'checks') {
+                $field .= '$form->checkbox(\'' . $attribute['name'] . '\', __(\'' . $attribute['label'] . '\'))->options([])';
+            } else if ($attribute['type'] == 'email') {
+                $field .= '$form->email(\'' . $attribute['name'] . '\', __(\'' . $attribute['label'] . '\'))';
+            } else if ($attribute['type'] == 'password') {
+                $field .= '$form->password(\'' . $attribute['name'] . '\', __(\'' . $attribute['label'] . '\'))';
+            } else if ($attribute['type'] == 'mobile') {
+                $field .= '$form->mobile(\'' . $attribute['name'] . '\', __(\'' . $attribute['label'] . '\'))->options([\'mask\' => \'999 9999 9999\'])';
+            } else if ($attribute['type'] == 'color') {
+                $field .= '$form->color(\'' . $attribute['name'] . '\', __(\'' . $attribute['label'] . '\'))';
+            } else if ($attribute['type'] == 'time') {
+                $field .= '$form->time(\'' . $attribute['name'] . '\', __(\'' . $attribute['label'] . '\'))->format(\'HH:mm:ss\')';
+            } else if ($attribute['type'] == 'date') {
+                $field .= '$form->date(\'' . $attribute['name'] . '\', __(\'' . $attribute['label'] . '\'))->format(\'YYYY-MM-DD\')';
+            } else if ($attribute['type'] == 'datetime') {
+                $field .= '$form->datetime(\'' . $attribute['name'] . '\', __(\'' . $attribute['label'] . '\'))->format(\'YYYY-MM-DD HH:mm:ss\')';
+            } else if ($attribute['type'] == 'currency') {
+                $field .= '$form->currency(\'' . $attribute['name'] . '\', __(\'' . $attribute['label'] . '\'))->symbol(\'USD\')';
+            } else if ($attribute['type'] == 'rate') {
+                $field .= '$form->rate(\'' . $attribute['name'] . '\', __(\'' . $attribute['label'] . '\'))';
+            } else if ($attribute['type'] == 'image') {
+                $field .= '$form->image(\'' . $attribute['name'] . '\', __(\'' . $attribute['label'] . '\'))';
+            } else if ($attribute['type'] == 'multipleImage') {
+                $field .= '$form->multipleImage(\'' . $attribute['name'] . '\', __(\'' . $attribute['label'] . '\'))';
+            } else if ($attribute['type'] == 'file') {
+                $field .= '$form->file(\'' . $attribute['name'] . '\', __(\'' . $attribute['label'] . '\'))';
+            } else if ($attribute['type'] == 'multipleFile') {
+                $field .= '$form->multipleFile(\'' . $attribute['name'] . '\', __(\'' . $attribute['label'] . '\'))';
+            } else if ($attribute['type'] == 'slider') {
+                $field .= '$form->slider(\'' . $attribute['name'] . '\', __(\'' . $attribute['label'] . '\'))->options([\'max\' => 100, \'min\' => 1, \'step\' => 1, \'postfix\' => \'' . $attribute['label'] . '\'])';
+            } else {
+                $field .= '$form->text(\'' . $attribute['name'] . '\', __(\'' . $attribute['label'] . '\'))';
+            }
+
+            if (!in_array('nullable', $attribute['rules'])) {
+                $field .= '->required()';
+            }
+
+            return $field . ';';
+        });
+
+        $stub = str_replace(
             [
-                '{{modelName}}',
-                '{{modelNamePluralLowerCase}}',
-                '{{modelNameLowerCase}}'
+                '{{tableColumns}}',
+                '{{detailFields}}',
+                '{{formFields}}',
             ],
             [
-                $name,
-                strtolower($this->str_plural($name)),
-                strtolower($name)
+                $tableColumns->implode('' . PHP_EOL . "\t\t"),
+                $detailFields->implode('' . PHP_EOL . "\t\t"),
+                $formFields->implode('' . PHP_EOL . "\t\t"),
             ],
-            $this->getStub('ApiController')
+            $stub
         );
 
-        file_put_contents(app_path("/Http/Controllers/{$name}Controller.php"), $controllerTemplate);
+        file_put_contents(app_path("/Admin/Controllers/{$modelName}Controller.php"), $stub);
     }
 
-    protected function adminController($name)
+    protected function createApiController($modelName)
     {
-        $controllerTemplate = str_replace(
+    }
+
+    protected function createMigration($modelName, $attributes)
+    {
+        $stub = $this->getStubReplaced('Migration', $modelName);
+
+        $formatedAttributes = $this->getFormattedAttributes($attributes);
+
+        $tableColumns = $formatedAttributes->map(function ($attribute) {
+            $migationField = '';
+            if ($attribute['type'] == 'text') {
+                $migationField .= '$table->text("' . $attribute['name'] . '")';
+            } else if ($attribute['type'] == 'integer') {
+                $migationField .= '$table->integer("' . $attribute['name'] . '")';
+            } else if ($attribute['type'] == 'boolean') {
+                $migationField .= '$table->boolean("' . $attribute['name'] . '")';
+            } else if ($attribute['type'] == 'date') {
+                $migationField .= '$table->date("' . $attribute['name'] . '")';
+            } else if ($attribute['type'] == 'time') {
+                $migationField .= '$table->time("' . $attribute['name'] . '", 0)';
+            } else if ($attribute['type'] == 'datetime') {
+                $migationField .= '$table->dateTime("' . $attribute['name'] . '", 0)';
+            } else {
+                $migationField .= '$table->string("' . $attribute['name'] . '")';
+            }
+
+            if (in_array('nullable', $attribute['rules'])) {
+                $migationField .= '->nullable()';
+            }
+
+            return $migationField . ';';
+        });
+
+        $stub = str_replace(
             [
-                '{{modelName}}',
-                '{{modelNamePlural}}',
-                '{{modelNamePluralLowerCase}}',
-                '{{modelNameLowerCase}}'
+                '{{tableColumns}}',
             ],
             [
-                $name,
-                $this->str_plural($name),
-                strtolower($this->str_plural($name)),
-                strtolower($name)
+                $tableColumns->implode('' . PHP_EOL . "\t\t\t"),
             ],
-            $this->getStub('AdminController')
+            $stub
         );
 
-        file_put_contents(app_path("/Admin/Controllers/{$name}Controller.php"), $controllerTemplate);
+        $migrationName = date('Y_m_d_His') . '_create_' . strtolower($this->strPlural($modelName)) . '_table';
+
+        file_put_contents(base_path("/database/migrations/{$migrationName}.php"), $stub);
     }
 
     protected function getStub($type)
@@ -132,8 +209,69 @@ class CrudCommand extends Command
         return file_get_contents(resource_path("stubs/$type.stub"));
     }
 
-    protected function str_plural($str)
+    protected function createApiResourceRoutes($modelName)
+    {
+        $apiRoutesLines = file(app_path('routes/api.php'));
+        array_pop($apiRoutesLines);
+        $apiRoutesContent = implode('', $apiRoutesLines);
+        file_put_contents(base_path('routes/api.php'), $apiRoutesContent . "\n\n\t" . 'Route::resource(\'' . $this->strPlural(strtolower($modelName)) . "', '{$modelName}Controller');");
+    }
+
+    protected function createAdminResourceRoutes($modelName)
+    {
+        $adminRoutesLines = file(app_path('/Admin/routes.php'));
+        array_pop($adminRoutesLines);
+        $adminRoutesContent = implode('', $adminRoutesLines);
+        file_put_contents(app_path('/Admin/routes.php'), $adminRoutesContent . "\n\t" . '$router->resource(\'' . $this->strPlural(strtolower($modelName)) . '\', ' . $modelName . 'Controller::class);' . PHP_EOL . '});' . PHP_EOL);
+    }
+
+    protected function strPlural($str)
     {
         return $str . 's';
+    }
+
+    protected function getStubReplaced($stubName, $modelName)
+    {
+        $stub = $this->getStub($stubName);
+        $stub = $this->replacePlaceholdersWithModelName($stub, $modelName);
+
+        return $stub;
+    }
+
+    protected function replacePlaceholdersWithModelName($stub, $modelName)
+    {
+        return str_replace(
+            [
+                '{{modelNamePluralLowerCase}}',
+                '{{modelNamePlural}}',
+                '{{modelNameLowerCase}}',
+                '{{modelName}}',
+            ],
+            [
+                strtolower($this->strPlural($modelName)),
+                $this->strPlural($modelName),
+                strtolower($modelName),
+                $modelName,
+            ],
+            $stub
+        );
+    }
+
+    protected function getFormattedAttributes($attributes)
+    {
+        return $attributes->map(function ($attribute) {
+            $attributesParts = collect(explode(':', $attribute));
+            $name = trim($attributesParts[0]);
+            $type = isset($attributesParts[1]) && $attributesParts[1] ? trim($attributesParts[1]) : 'string';
+            $label = isset($attributesParts[2]) ? trim($attributesParts[2]) : ucfirst($name);
+            $rules = isset($attributesParts[3]) ? explode(',', $attributesParts[3]) : [];
+
+            return [
+                'name' => $name,
+                'type' => $type,
+                'label' => $label,
+                'rules' => $rules,
+            ];
+        });
     }
 }

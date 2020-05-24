@@ -30,6 +30,8 @@ class {{modelName}}Controller extends AdminController
 
         $grid->disableExport();
 
+        {{tableColumns}}
+
         $grid->model()->orderBy('id', 'asc');
 
         return $grid;
@@ -46,6 +48,8 @@ class {{modelName}}Controller extends AdminController
         $show = new Show({{modelName}}::findOrFail($id));
 
         $show->field('id', __('Id'));
+
+        {{detailFields}}
         
         $show->field('created_at', __('Created at'));
         $show->field('updated_at', __('Updated at'));
@@ -61,6 +65,8 @@ class {{modelName}}Controller extends AdminController
     protected function form()
     {
         $form = new Form(new {{modelName}}());
+
+        {{formFields}}
 
         return $form;
     }

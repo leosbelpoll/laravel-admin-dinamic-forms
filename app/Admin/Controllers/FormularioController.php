@@ -71,7 +71,7 @@ class FormularioController extends AdminController
             ->required()
             ->creationRules(['required', "unique:formularios"])
             ->updateRules(['required', "unique:formularios,name,{{id}}"]);
-        $form->text('description');
+        $form->textarea('description', __('Descripción'));
 
         $fields = Field::all()->pluck('name', 'id')->toArray();
         $form->multipleSelect('fields', 'Campos')->options($fields);
