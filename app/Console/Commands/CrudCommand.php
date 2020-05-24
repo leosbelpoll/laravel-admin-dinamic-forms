@@ -42,6 +42,7 @@ class CrudCommand extends Command
         // $this->apiController($name);
         $this->adminController($name);
         $this->model($name);
+        $this->migration($name);
 
         // Add resource API routes
         // $apiRoutesLines = file(app_path('routes/api.php'));
@@ -67,13 +68,32 @@ class CrudCommand extends Command
         file_put_contents(app_path("/Model/{$name}.php"), $modelTemplate);
     }
 
+    protected function migration($name)
+    {
+        $migrationTemplate = str_replace(
+            [
+                '{{modelName}}',
+                '{{modelNamePluralLowerCase}}',
+            ],
+            [
+                $name,
+                strtolower($this->str_plural($name)),
+            ],
+            $this->getStub('Migration')
+        );
+
+        $migrationName = date('Y_m_d_His') . '_create_' . strtolower($this->str_plural($name)) . '_table';
+
+        file_put_contents(base_path("/database/migrations/{$migrationName}.php"), $migrationTemplate);
+    }
+
     protected function apiController($name)
     {
         $controllerTemplate = str_replace(
             [
                 '{{modelName}}',
                 '{{modelNamePluralLowerCase}}',
-                '{{modelNameSingularLowerCase}}'
+                '{{modelNameLowerCase}}'
             ],
             [
                 $name,
@@ -93,7 +113,7 @@ class CrudCommand extends Command
                 '{{modelName}}',
                 '{{modelNamePlural}}',
                 '{{modelNamePluralLowerCase}}',
-                '{{modelNameSingularLowerCase}}'
+                '{{modelNameLowerCase}}'
             ],
             [
                 $name,
