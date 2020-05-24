@@ -3,9 +3,8 @@
 namespace App\Admin\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Project;
-use App\Standard;
-use App\Vehicle;
+use App\Model\Field;
+use App\Model\Formulario;
 use Encore\Admin\Controllers\Dashboard;
 use Encore\Admin\Layout\Column;
 use Encore\Admin\Layout\Content;
@@ -17,17 +16,14 @@ class HomeController extends Controller
     public function index(Content $content)
     {
         $content->row(function (Row $row) {
-            $projectsCounter = Project::count();
-            $standardsCounter = Standard::where('standard_id', null)->count();
-            $vehiclesCounter = Vehicle::count();
+            $fieldsCount = Field::count();
+            $formsCounter = Formulario::count();
 
-            $projectsWidget = view('dashboard.projects-widget', ['count' => $projectsCounter])->render();
-            $standardsWidget = view('dashboard.standards-widget', ['count' => $standardsCounter])->render();
-            $vehiclesWidget = view('dashboard.vehicles-widget', ['count' => $vehiclesCounter])->render();
+            $fieldsWidget = view('dashboard.fields-widget', ['count' => $fieldsCount])->render();
+            $formsWidget = view('dashboard.forms-widget', ['count' => $formsCounter])->render();
 
-            $row->column(4, $projectsWidget);
-            $row->column(4, $standardsWidget);
-            $row->column(4, $vehiclesWidget);
+            $row->column(6, $fieldsWidget);
+            $row->column(6, $formsWidget);
         });
 
         return $content;

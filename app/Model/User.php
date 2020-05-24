@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Model;
 
 use Encore\Admin\Auth\Database\Administrator;
 use Tymon\JWTAuth\Contracts\JWTSubject;

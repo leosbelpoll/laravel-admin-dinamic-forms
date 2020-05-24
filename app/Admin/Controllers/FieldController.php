@@ -2,10 +2,9 @@
 
 namespace App\Admin\Controllers;
 
-use App\Field;
-use App\FieldTypeEnum;
-use App\Formulario;
-use App\SelectorEnum;
+use App\Model\Field;
+use App\Model\FieldTypeEnum;
+use App\Model\Formulario;
 use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
@@ -32,8 +31,6 @@ class FieldController extends AdminController
         FieldTypeEnum::DATE => 'Fecha',
     ];
 
-    private $selectors = [SelectorEnum::AUTOMOVIL => 'Número de placa', SelectorEnum::BOMBA_ABASTECIMIENTO => 'Bomba de abastecimiento', SelectorEnum::SISTEMA_AMORTIGUACION => 'Sistema de amortiguación', SelectorEnum::ESTADO_MEDICION => 'Estado de medición', SelectorEnum::GENERADOR_GASOLINA => 'Generador de gasolina'];
-
     /**
      * Make a grid builder.
      *
@@ -51,7 +48,6 @@ class FieldController extends AdminController
         $grid->column('description', __('Descripción'));
         $grid->column('type', __('Tipo'));
         $grid->column('options', __('Opciones'));
-        $grid->column('selector', __('Selector'));
         $grid->column('rules', 'Reglas')->display(function ($rules) {
             $text = $rules ? implode('|', $rules) : "";
             return "<span>{$text}</span>";
@@ -77,6 +73,7 @@ class FieldController extends AdminController
         $show->field('name', __('Name'));
         $show->field('description', __('Description'));
         $show->field('type', __('Type'));
+        $show->field('options', __('Options'));
         $show->field('rules', __('Rules'));
         $show->field('position', __('Position'));
         $show->field('created_at', __('Created at'));
@@ -106,9 +103,6 @@ class FieldController extends AdminController
             ->required();
 
         $form->text('options', __('Opciones separadas por: "|"'));
-
-        $form->select('selector', __('Selector (Nomenclador)'))
-            ->options($this->selectors);
 
         $form->multipleSelect('rules', __('Reglas'))
             ->options(['required' => 'Obligatorio']);

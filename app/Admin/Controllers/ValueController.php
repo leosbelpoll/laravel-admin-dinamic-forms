@@ -4,12 +4,12 @@ namespace App\Admin\Controllers;
 
 use App\BombaAbastecimiento;
 use App\EstadoMedicion;
-use App\FieldTypeEnum;
+use App\Model\FieldTypeEnum;
 use App\GeneradorGasolina;
-use App\Automovil;
+use App\Model\Automovil;
 use App\SelectorEnum;
 use App\SistemaAmortiguacion;
-use App\Value;
+use App\Model\Value;
 use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
@@ -39,23 +39,11 @@ class ValueController extends AdminController
 
         $grid->disableExport();
 
-        $grid->model()->select('user_id', 'project_id', 'standard_id', 'formulario_id', 'unique_group')->groupBy('user_id', 'project_id', 'standard_id', 'formulario_id', 'unique_group');
+        $grid->model()->select('user_id', 'formulario_id', 'unique_group')->groupBy('user_id', 'formulario_id', 'unique_group');
 
         $grid->user('Usuario')->display(function ($user) {
             if ($user) {
                 return "<span>{$user['name']}</span>";
-            }
-        });
-
-        $grid->project('Proyecto')->display(function ($project) {
-            if ($project) {
-                return "<span>{$project['name']}</span>";
-            }
-        });
-
-        $grid->standard('Norma')->display(function ($standard) {
-            if ($standard) {
-                return "<span>{$standard['name']}</span>";
             }
         });
 
@@ -184,8 +172,6 @@ class ValueController extends AdminController
         $form->textarea('value', __('Value'));
         $form->textarea('unique_group', __('Unique group'));
         $form->number('user_id', __('User id'));
-        $form->number('project_id', __('Project id'));
-        $form->number('standard_id', __('Standard id'));
         $form->number('formulario_id', __('Formulario id'));
         $form->number('field_id', __('Field id'));
 

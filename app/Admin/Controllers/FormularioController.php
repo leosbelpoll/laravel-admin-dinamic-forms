@@ -2,9 +2,8 @@
 
 namespace App\Admin\Controllers;
 
-use App\Field;
-use App\Formulario;
-use App\Standard;
+use App\Model\Field;
+use App\Model\Formulario;
 use Encore\Admin\Auth\Database\Permission;
 use Encore\Admin\Auth\Database\Role;
 use Encore\Admin\Controllers\AdminController;

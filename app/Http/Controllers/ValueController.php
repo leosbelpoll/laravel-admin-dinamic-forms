@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Field;
-use App\FieldTypeEnum;
-use App\User;
-use App\Value;
+use App\Model\Field;
+use App\Model\FieldTypeEnum;
+use App\Model\User;
+use App\Model\Value;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\MessageBag;
@@ -18,15 +18,11 @@ class ValueController extends Controller
 
         $knownValues = [
             'username' => $request->input('username'),
-            'project_id' => $request->input('project_id'),
-            'standard_id' => $request->input('standard_id'),
             'formulario_id' => $request->input('formulario_id'),
         ];
 
         $validator = Validator::make($knownValues, [
             'username' => 'required',
-            'project_id' => 'required|numeric',
-            'standard_id' => 'required|numeric',
             'formulario_id' => 'required|numeric'
         ]);
 
@@ -52,8 +48,6 @@ class ValueController extends Controller
                 $dbField = Field::find($field->id);
                 $value = new Value([
                     'user_id' => $user->id,
-                    'project_id' => $request->input('project_id'),
-                    'standard_id' => $request->input('standard_id'),
                     'formulario_id' => $request->input('formulario_id'),
                     'field_id' => $field->id,
                     'value' => $field->value

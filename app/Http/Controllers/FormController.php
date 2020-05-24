@@ -2,8 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Formulario;
-use Illuminate\Http\Request;
+use App\Model\Formulario;
 
 class FormController extends Controller
 {
