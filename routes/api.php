@@ -32,3 +32,5 @@ Route::middleware('auth:api')->group(function ($router) {
     // Form Data
     Route::post('/save-values', 'ValueController@saveValues')->name('saveValues');
 });
+
+Route::resource('carritos', 'CarritoController');
