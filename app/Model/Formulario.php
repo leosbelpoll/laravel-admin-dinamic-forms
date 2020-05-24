@@ -14,11 +14,6 @@ class Formulario extends Model
         'name', 'description',
     ];
 
-    public function standards()
-    {
-        return $this->belongsTo(Standard::class);
-    }
-
     public function fields()
     {
         return $this->belongsToMany(Field::class);

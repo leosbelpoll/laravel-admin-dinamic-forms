@@ -2,13 +2,7 @@
 
 namespace App\Admin\Controllers;
 
-use App\BombaAbastecimiento;
-use App\EstadoMedicion;
 use App\Model\FieldTypeEnum;
-use App\GeneradorGasolina;
-use App\Model\Automovil;
-use App\SelectorEnum;
-use App\SistemaAmortiguacion;
 use App\Model\Value;
 use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Form;
@@ -71,18 +65,6 @@ class ValueController extends AdminController
             }, 'Usuario');
 
             $filter->where(function ($query) {
-                $query->whereHas('project', function ($query) {
-                    $query->where('name', 'ilike', "%{$this->input}%");
-                });
-            }, 'Proyecto');
-
-            $filter->where(function ($query) {
-                $query->whereHas('standard', function ($query) {
-                    $query->where('name', 'ilike', "%{$this->input}%");
-                });
-            }, 'Norma');
-
-            $filter->where(function ($query) {
                 $query->whereHas('formulario', function ($query) {
                     $query->where('name', 'ilike', "%{$this->input}%");
                 });
@@ -116,33 +98,6 @@ class ValueController extends AdminController
                 $show->field('field_' . $index, __($value->field->name))->as(function () use ($value) {
                     return $value->value;
                 })->image();
-            } else if ($value->field->type == FieldTypeEnum::SELECTOR_NOMENCLADOR) {
-                $name = null;
-
-                switch ($value->field->selector) {
-                    case SelectorEnum::AUTOMOVIL:
-                        $name = Automovil::find($value->value)->name;
-                        break;
-                    case SelectorEnum::BOMBA_ABASTECIMIENTO:
-                        $name = BombaAbastecimiento::find($value->value)->name;
-                        break;
-                    case SelectorEnum::SISTEMA_AMORTIGUACION:
-                        $name = SistemaAmortiguacion::find($value->value)->name;
-                        break;
-                    case SelectorEnum::ESTADO_MEDICION:
-                        $name = EstadoMedicion::find($value->value)->name;
-                        break;
-                    case SelectorEnum::GENERADOR_GASOLINA:
-                        $name = GeneradorGasolina::find($value->value)->name;
-                        break;
-                    default:
-                        $name = 'Selector no definido';
-                        break;
-                }
-
-                $show->field('field_' . $index, __($value->field->name))->as(function () use ($name) {
-                    return $name;
-                });
             } else {
                 $show->field('field_' . $index, __($value->field->name))->as(function () use ($value) {
                     return $value->value;

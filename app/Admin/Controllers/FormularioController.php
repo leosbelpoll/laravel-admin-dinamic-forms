@@ -52,7 +52,6 @@ class FormularioController extends AdminController
         $show->field('id', __('Id'));
         $show->field('name', __('Name'));
         $show->field('description', __('Description'));
-        $show->field('standard_id', __('Standard id'));
         $show->field('created_at', __('Created at'));
         $show->field('updated_at', __('Updated at'));
 
