@@ -24,7 +24,7 @@ class FieldController extends AdminController
         FieldTypeEnum::IMAGE => 'Imágen',
         FieldTypeEnum::SHORT_TEXT => 'Texto corto',
         FieldTypeEnum::LONG_TEXT => 'Texto largo',
-        FieldTypeEnum::SELECTOR_OPTIONS => 'Selector',
+        FieldTypeEnum::SELECT => 'Selector',
         FieldTypeEnum::CHECK_OPTIONS_SI_NO_OTRO => 'Check tipo Si/No/Otro',
         FieldTypeEnum::CHECK_OPTIONS => 'Check tipo opciones',
         FieldTypeEnum::DATE => 'Fecha',
