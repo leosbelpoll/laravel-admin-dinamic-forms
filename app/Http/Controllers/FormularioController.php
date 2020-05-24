@@ -12,7 +12,7 @@ class FormularioController extends Controller
     }
 
     public function get($id){
-        $form =  Formulario::find($id)->with('fields')->get();
+        $form =  Formulario::with('fields')->find($id);
         if (!$form) {
             return response()->json([
                 'error' => 'Not found'
