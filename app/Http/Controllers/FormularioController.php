@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Model\Formulario;
 
-class FormController extends Controller
+class FormularioController extends Controller
 {
 
     public function getAll(){
@@ -12,7 +12,7 @@ class FormController extends Controller
     }
 
     public function get($id){
-        $form =  Formulario::find($id);
+        $form =  Formulario::find($id)->with('fields')->get();
         if (!$form) {
             return response()->json([
                 'error' => 'Not found'

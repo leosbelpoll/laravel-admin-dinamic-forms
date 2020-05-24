@@ -77,11 +77,25 @@ class CrudCommand extends Command
         $formatedAttributes = $this->getFormattedAttributes($attributes);
 
         $tableColumns = $formatedAttributes->map(function ($attribute) {
-            return '$grid->column(\'' . $attribute['name'] . '\', __(\'' . $attribute['label'] . '\'));';
+            $field = '';
+            if ($attribute['type'] == 'image') {
+                $field = '$grid->column(\'' . $attribute['name'] . '\', __(\'' . $attribute['label'] . '\'))->image(null, null, 100)';
+            } else {
+                $field = '$grid->column(\'' . $attribute['name'] . '\', __(\'' . $attribute['label'] . '\'))';
+            }
+
+            return $field . ';';
         });
 
         $detailFields = $formatedAttributes->map(function ($attribute) {
-            return '$show->field(\'' . $attribute['name'] . '\', __(\'' . $attribute['label'] . '\'));';
+            $field = '';
+            if ($attribute['type'] == 'image') {
+                $field = '$show->field(\'' . $attribute['name'] . '\', __(\'' . $attribute['label'] . '\'))->image()';
+            } else {
+                $field = '$show->field(\'' . $attribute['name'] . '\', __(\'' . $attribute['label'] . '\'))';
+            }
+
+            return $field . ';';
         });
 
         $formFields = $formatedAttributes->map(function ($attribute) {
