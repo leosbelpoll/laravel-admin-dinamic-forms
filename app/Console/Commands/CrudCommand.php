@@ -72,11 +72,11 @@ class CrudCommand extends Command
     {
         $migrationTemplate = str_replace(
             [
-                '{{modelName}}',
+                '{{modelNamePlural}}',
                 '{{modelNamePluralLowerCase}}',
             ],
             [
-                $name,
+                $this->str_plural($name),
                 strtolower($this->str_plural($name)),
             ],
             $this->getStub('Migration')
